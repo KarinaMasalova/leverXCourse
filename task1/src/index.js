@@ -56,6 +56,7 @@ window.addEventListener('load', () => {
     const divCards = createElement('div', 'cards');
     const tableCards = createElement('table', 'cards-table');
     const cardsArea = document.querySelector('.cards-area');
+    const searchContainer = document.querySelector('.search__container');
 
     function createElement(tag, ...classes) {
         const element = document.createElement(tag);
@@ -120,7 +121,7 @@ window.addEventListener('load', () => {
         return tableCards;
     };
 
-    const cardComponents = cardsWithInfo.map(createGridCardsFromObj);
+    let currentQuery = cardsWithInfo.map(createGridCardsFromObj);
 
     gridViewButton.addEventListener('click', () => {
         const cardComponents = cardsWithInfo.map(createGridCardsFromObj);
@@ -134,5 +135,19 @@ window.addEventListener('load', () => {
         showCardsNumber(createTableCardsFromObj);
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-inactive.png')";
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-active.png')";
+    });
+
+    function saveInputValue() {
+        let res;
+        const val = document.querySelector('.search__input').value;
+        if (val !== '') res = val;
+        else return false;
+        console.log(res);
+        return res;
+    }
+
+    searchContainer.addEventListener('submit', (event) => {
+        event.preventDefault();
+        currentQuery = saveInputValue();
     });
 });
