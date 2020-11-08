@@ -39,13 +39,6 @@ body {
     grid-template-columns: 30% 70%;
 }
 
-/* search */
-
-.search__kind,
-.search__button {
-    text-transform: uppercase;
-}
-
 /* icons */
 
 .ico {
@@ -80,6 +73,17 @@ body {
     background-image: url(../assets/img/icons/line-view-inactive.png);
 }
 
+/* search */
+
+.search__kind,
+.search__button {
+    text-transform: uppercase;
+}
+
+.search__kinds {
+    display: flex;
+}
+
 /* cards */
 
 .cards {
@@ -109,6 +113,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 120px 40px 45px 50px;
+    box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.05);
 }
 
 .card__engName, .card__ruName,
