@@ -1,5 +1,5 @@
 :root {
-    --color-bg: #F2F2F2;
+    --color-bg: #e7edf7/*#F2F2F2*/;
     --color-primary: #0000CD;
     --color-additional: #6495ED;
     --color-light: #ffffff;
@@ -28,7 +28,7 @@ body {
 
 .header {
     background-color: var(--color-primary);
-    padding: 20px 0;
+    padding: 30px 0;
 }
 
 /* MAIN */
@@ -45,6 +45,18 @@ body {
     cursor: pointer;
 }
 
+.search__icon {
+    grid-area: search__icon;
+    display: grid;
+    background-image: url('../assets/img/icons/search.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: 4px;
+    border: 1px solid lightgray;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+}
+
 .department__ico,
 .room__ico,
 .ico__grid-view,
@@ -58,19 +70,19 @@ body {
 }
 
 .department__ico {
-    background-image: url(../assets/img/icons/briefcase.svg);
+    background-image: url('../assets/img/icons/briefcase.svg');
 }
 
 .room__ico {
-    background-image: url(../assets/img/icons/room.png);
+    background-image: url('../assets/img/icons/room.png');
 }
 
 .ico__grid-view {
-    background-image: url(../assets/img/icons/grid-view-active.png);
+    background-image: url('../assets/img/icons/grid-view-active.png');
 }
 
 .ico__table-view {
-    background-image: url(../assets/img/icons/line-view-inactive.png);
+    background-image: url('../assets/img/icons/line-view-inactive.png');
 }
 
 /* search */
@@ -81,7 +93,80 @@ body {
 }
 
 .search__kinds {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+.search__kind {
+    margin-right: 25px;
+    padding-bottom: 25px;
+    font-family: var(--font);
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+    color: var(--color-light-text);
+}
+
+.search__kind:hover {
+    cursor: pointer;
+    color: var(--color-dark);
+    transition: all ease-in .3s;
+}
+
+.search__kind.active {
+    padding-left: 5px;
+    color: var(--color-dark);
+    border-bottom: 4px solid var(--color-additional);
+}
+
+.search__container {
+    padding: 30px;
+    margin-right: 20px;
+    display: grid;
+    grid-template-columns: 1.5fr 8.5fr;
+    grid-template-rows: 36px 56px;
+    grid-template-areas: "search__icon search__input"
+                        "search__button search__button";
+    background-color: var(--color-light);
+    box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.05);
+    border-radius: 5px;
+}
+
+.search__input {
+    grid-area: search__input;
+    outline: none;
+    border: 1px solid lightgray;
+    border-left: none;
+    padding: 12px 0 12px 20px;
+    border-radius: 0 5px 5px 0;
+    font-family: var(--font);
+    font-size: 1.4rem;
+}
+
+.search__input::placeholder {
+    padding: 30px 0;
+    color: var(--color-light-text);
+    font-family: var(--font);
+    font-size: 1.4rem;
+}
+
+.search__button {
+    grid-area: search__button;
+    outline: none;
+    border: none;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--color-additional);
+    color: var(--color-light);
+    font-family: var(--font);
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+    border-radius: 5px;
+}
+
+.search__button:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all ease-in .3s;
 }
 
 /* cards */
@@ -114,6 +199,7 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: 120px 40px 45px 50px;
     box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.05);
+    border-radius: 5px;
 }
 
 .card__engName, .card__ruName,
@@ -148,7 +234,7 @@ body {
 .card__img {
     width: 120px;
     height: 120px;
-    background-image: url(../assets/img/1.jpg);
+    background-image: url('../assets/img/1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 50%;
