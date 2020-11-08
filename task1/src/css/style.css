@@ -1,0 +1,173 @@
+:root {
+    --color-bg: #F2F2F2;
+    --color-primary: #0000CD;
+    --color-additional: #6495ED;
+    --color-light: #ffffff;
+    --color-dark: #000000;
+    --color-light-text: rgba(0,0,0,0.4);
+    --font: 'Roboto', 'Verdana', sans-serif;
+
+}
+
+/* BASE */
+
+html {
+    font-size: 10px;
+}
+
+body {
+    background-color: var(--color-bg);
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 1170px;
+}
+
+/* HEADER */
+
+.header {
+    background-color: var(--color-primary);
+    padding: 20px 0;
+}
+
+/* MAIN */
+
+.main__wrapper {
+    padding-top: 25px;
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+/* search */
+
+.search__kind,
+.search__button {
+    text-transform: uppercase;
+}
+
+/* icons */
+
+.ico {
+    cursor: pointer;
+}
+
+.department__ico,
+.room__ico,
+.ico__grid-view,
+.ico__table-view {
+    margin: auto 0;
+    display: grid;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.department__ico {
+    background-image: url(../assets/img/icons/briefcase.svg);
+}
+
+.room__ico {
+    background-image: url(../assets/img/icons/room.png);
+}
+
+.ico__grid-view {
+    background-image: url(../assets/img/icons/grid-view-active.png);
+}
+
+.ico__table-view {
+    background-image: url(../assets/img/icons/line-view-inactive.png);
+}
+
+/* cards */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 250px);
+    grid-template-rows: repeat(3, 300px);
+    grid-gap: 20px;
+}
+
+.cards-area__info {
+    padding-bottom: 25px;
+    display: grid;
+    grid-template-columns: auto 40px 50px;
+}
+
+.cards-number {
+    margin: 0;
+    font-family: var(--font);
+    font-size: 1.4rem;
+    letter-spacing: 0.3px;
+    color: rgba(0,0,0,0.6);
+}
+
+.card {
+    padding: 25px 30px 20px;
+    background-color: var(--color-light);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 120px 40px 45px 50px;
+}
+
+.card__engName, .card__ruName,
+.card__img {
+    justify-self: center;
+}
+
+.card__engName {
+    padding-top: 20px;
+    font-family: var(--font);
+    font-size: 2.0rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.3px;
+    color: var(--color-dark);
+}
+
+.card__ruName {
+    margin: 0;
+    padding: 10px 0 30px;
+    font-family: var(--font);
+    font-size: 1.4rem;
+    line-height: 1.2rem;
+    letter-spacing: 0.3px;
+    color: var(--color-light-text);
+}
+
+.card__engName:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.card__img {
+    width: 120px;
+    height: 120px;
+    background-image: url(../assets/img/1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.card__info {
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border-top: 1px solid lightgray;
+}
+
+.department,
+.room {
+    display: grid;
+    grid-template-columns: 25px auto;
+}
+
+.department__kind,
+.room__number {
+    margin: auto 0;
+    font-family: var(--font);
+    font-size: 1.4rem;
+    line-height: 1.2rem;
+    letter-spacing: 0.3px;
+    color: var(--color-dark);
+}
