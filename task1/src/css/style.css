@@ -169,7 +169,7 @@ body {
     transition: all ease-in .3s;
 }
 
-/* cards */
+/* cards grid */
 
 .cards {
     display: grid;
@@ -261,4 +261,10 @@ body {
     line-height: 1.2rem;
     letter-spacing: 0.3px;
     color: var(--color-dark);
+}
+
+/* cards table */
+
+.cards-table {
+    border: 1px solid black;
 }
