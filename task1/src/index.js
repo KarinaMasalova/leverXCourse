@@ -130,34 +130,30 @@ window.addEventListener('load', () => {
     console.log(cardsWithInfo);
 
     function saveInputValue() {
-        let res;
         const val = document.querySelector('.search__input').value;
-        if (val !== '') res = val;
-        else return false;
-        return res;
+        let lowerCaseValue = val.toLowerCase();
+        return lowerCaseValue;
     }
 
-    /* filter cards by name */
-    function findEmployeeCardByName(cards, name) {
-        let filteredCards = cards.filter((value) => 
-            value
-                .toLocaleLowerCase() /* TypeError: value.toLocaleLowerCase is not a function */
-                .includes(
-                    value
-                        .trim()
-                        .toLocaleLowerCase() ||
-                    name
-                        .toLocaleLowerCase()
-                        .includes(value.trim().toLocaleLowerCase()
-                )
-            ));
-        return filteredCards;
+    function findEmployeeCardByName(cards) {  
+        let inputValue = saveInputValue();
+        let filteredCards = [];
+
+        cards.forEach((card) => {
+            card.engName = card.engName.toLowerCase();
+            if (card.engName.includes(inputValue)) {
+                filteredCards.push(card);
+                divCards.outerHTML = createGridCardsFromObj(filteredCards); // [object HTMLDivElement]
+                showCardsNumber(filteredCards);
+            }
+        });
+
+        console.log(filteredCards)
     };
 
     searchContainer.addEventListener('submit', (event) => {
         event.preventDefault();
-        let value = saveInputValue();
-        findEmployeeCardByName(cardsWithInfo, value);
+        findEmployeeCardByName(cardsWithInfo);
     });
 
     gridViewButton.addEventListener('click', () => {
