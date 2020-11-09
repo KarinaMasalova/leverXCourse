@@ -58,6 +58,7 @@ window.addEventListener('load', () => {
     const cardsArea = document.querySelector('.cards-area');
     const searchContainer = document.querySelector('.search__container');
 
+    /* helper for creating elements */
     function createElement(tag, ...classes) {
         const element = document.createElement(tag);
         if (classes) {
@@ -66,6 +67,7 @@ window.addEventListener('load', () => {
         return element;
     }
 
+    /* cards with data from object */
     const cardsWithInfo = cards.map( (obj) => ({
         photo: obj.photo,
         engName: obj.engName,
@@ -74,6 +76,7 @@ window.addEventListener('load', () => {
         room: obj.room,
     }));
 
+    /* doesn't work correctly yet */
     const showCardsNumber = (obj) => {
         const cardsNumber = document.querySelector('.cards-number');
         if (obj.length > 1) {
@@ -113,15 +116,49 @@ window.addEventListener('load', () => {
     };
 
     const createTableCardsFromObj = (obj) => {
+        
         const tableHead = createElement('thead' ,'cards-table__head');
         const tableBody = createElement('tbody' ,'cards-table__body');
-
+        /* ... */
         tableCards.append(tableHead, tableBody);
 
         return tableCards;
     };
 
-    let currentQuery = cardsWithInfo.map(createGridCardsFromObj);
+    /* creating cards */
+    let cardComponents = cardsWithInfo.map(createGridCardsFromObj);
+    console.log(cardsWithInfo);
+
+    function saveInputValue() {
+        let res;
+        const val = document.querySelector('.search__input').value;
+        if (val !== '') res = val;
+        else return false;
+        return res;
+    }
+
+    /* filter cards by name */
+    function findEmployeeCardByName(cards, name) {
+        let filteredCards = cards.filter((value) => 
+            value
+                .toLocaleLowerCase() /* TypeError: value.toLocaleLowerCase is not a function */
+                .includes(
+                    value
+                        .trim()
+                        .toLocaleLowerCase() ||
+                    name
+                        .toLocaleLowerCase()
+                        .includes(value.trim().toLocaleLowerCase()
+                )
+            ));
+        return filteredCards;
+    };
+
+    searchContainer.addEventListener('submit', (event) => {
+        event.preventDefault();
+        let value = saveInputValue();
+        findEmployeeCardByName(cardsWithInfo, value);
+    });
 
     gridViewButton.addEventListener('click', () => {
         const cardComponents = cardsWithInfo.map(createGridCardsFromObj);
@@ -135,19 +172,5 @@ window.addEventListener('load', () => {
         showCardsNumber(createTableCardsFromObj);
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-inactive.png')";
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-active.png')";
-    });
-
-    function saveInputValue() {
-        let res;
-        const val = document.querySelector('.search__input').value;
-        if (val !== '') res = val;
-        else return false;
-        console.log(res);
-        return res;
-    }
-
-    searchContainer.addEventListener('submit', (event) => {
-        event.preventDefault();
-        currentQuery = saveInputValue();
     });
 });
