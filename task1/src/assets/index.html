@@ -10,9 +10,7 @@
 </head>
 <body>
     <header class="header">
-        <div class="wrapper">
-
-        </div>
+        <div class="wrapper"></div>
     </header>
     <main class="main">
         <div class="wrapper main__wrapper">
@@ -33,10 +31,26 @@
                     <span class="ico ico__grid-view"></span>
                     <span class="ico ico__table-view"></span>
                 </div>
-                
             </div>
         </div>
     </main>
     <script src="../index.js"></script>
+    <script id="gridCard" type="template">
+        <div class="card">
+            <div class="card__img" style="$img"></div>
+            <a class="card__engName">$name</a>
+            <p class="card__ruName">$nativeName</p>
+            <div class="card__info">
+                <div class="department">
+                    <span class="ico department__ico"></span>
+                    <span class="department__kind">$department</span>
+                </div>
+                <div class="room">
+                    <span class="ico room__ico"></span>
+                    <span class="room__number">$room</span>
+                </div>
+            </div>
+        </div>
+    </script>
 </body>
 </html>

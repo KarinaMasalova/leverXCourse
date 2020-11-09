@@ -51,13 +51,15 @@ const cards = [
 ];
 
 window.addEventListener('load', () => {
-    const tableViewButton = document.querySelector('.ico__table-view');
-    const gridViewButton = document.querySelector('.ico__grid-view');
-    const divCards = createElement('div', 'cards');
-    const tableCards = createElement('table', 'cards-table');
     const cardsArea = document.querySelector('.cards-area');
     const searchContainer = document.querySelector('.search__container');
-
+    const tableViewButton = document.querySelector('.ico__table-view');
+    const gridViewButton = document.querySelector('.ico__grid-view');
+    const gridCards = createElement('div', 'cards');
+    const tableCards = createElement('table', 'cards-table');
+    const gridCardTemplate = document.getElementById('gridCard').textContent;
+    //const tableCardTemplate = document.getElementById('tableCard').textContent;
+   
     /* helper for creating elements */
     function createElement(tag, ...classes) {
         const element = document.createElement(tag);
@@ -76,48 +78,32 @@ window.addEventListener('load', () => {
             cardsNumber.textContent = obj.length + ' employee displayed';
         }
     };
-    
-    const createGridCardsFromObj = (obj) => {
-        const card = createElement('div', 'card');
-        const cardImg = createElement('div', 'card__img');
-        const cardEngName = createElement('a', 'card__engName');
-        const cardRuName = createElement('p', 'card__ruName');
-        const cardInfo = createElement('div', 'card__info');
-        const cardDepartment = createElement('div', 'department');
-        const cardDepartmentIcon = createElement('span', 'ico', 'department__ico');
-        const cardDepartmentKind = createElement('span', 'department__kind');
-        const cardRoom = createElement('div', 'room');
-        const cardRoomIcon = createElement('span', 'ico', 'room__ico');
-        const cardRoomNumber = createElement('span', 'room__number');
 
-        cardDepartment.append(cardDepartmentIcon, cardDepartmentKind);
-        cardRoom.append(cardRoomIcon, cardRoomNumber);
-        cardInfo.append(cardDepartment, cardRoom);
-        card.append(cardImg, cardEngName, cardRuName, cardInfo);
-        divCards.append(card);
-        cardsArea.append(divCards);
-
-        cardImg.style.backgroundImage = `url(${obj.photo})`;
-        cardEngName.textContent += obj.engName;
-        cardRuName.textContent += obj.ruName;
-        cardDepartmentKind.textContent += obj.department;
-        cardRoomNumber.textContent += obj.room;
-
-        return cardsArea;
+    const mapCards = (cardTemplate, cards) => {
+        return cards
+            .map((card) => 
+                cardTemplate
+                    .replace('$img', `background-image:url('${card.photo}')`)
+                    .replace('$name', card.engName)
+                    .replace('$nativeName', card.ruName)
+                    .replace('$department', card.department)
+                    .replace('$room', card.room)
+            )
+            .join('');
     };
 
-    const createTableCardsFromObj = (obj) => {
-        
-        const tableHead = createElement('thead' ,'cards-table__head');
-        const tableBody = createElement('tbody' ,'cards-table__body');
-        /* ... */
-        tableCards.append(tableHead, tableBody);
+    const createGridCards = () => {
+        gridCards.innerHTML = mapCards(gridCardTemplate, cards);
+        cardsArea.append(gridCards);
+    };
 
-        return tableCards;
+    const createTableCards = () => {
+        tableCards.innerHTML = mapCards(tableCardTemplate, cards);
+        cardsArea.append(tableCards);
     };
 
     /* creating cards */
-    let cardComponents = cards.map(createGridCardsFromObj);
+    let cardComponents = cards.map(createGridCards);
 
     function saveInputValue() {
         const val = document.querySelector('.search__input').value;
@@ -127,35 +113,44 @@ window.addEventListener('load', () => {
 
     function findEmployeeCardByName(cards) {  
         let inputValue = saveInputValue();
-        let filteredCards = [];
-
-        cards.forEach((card) => {
-            card.engName = card.engName.toLowerCase();
-            if (card.engName.includes(inputValue)) {
-                filteredCards.push(card);
-                divCards.outerHTML = createGridCardsFromObj(filteredCards); // [object HTMLDivElement]
-                showCardsNumber(filteredCards);
-            }
+        let filteredCards = cards.filter((card) => {
+            return card.engName
+                .toLowerCase()
+                .includes(inputValue.toLowerCase().trim())
+            ||
+            card.ruName
+                .toLowerCase()
+                .includes(inputValue.toLowerCase().trim());
         });
+        return filteredCards;
+    };
 
-        console.log(filteredCards)
+    const createFilteredGridCards = ()  => {
+        const filteredCards = findEmployeeCardByName(cards);
+        gridCards.innerHTML = mapCards(gridCardTemplate, filteredCards);
+        cardsArea.append(gridCards);
+    };
+
+    const createFilteredTableCards = ()  => {
+        tableCards.innerHTML = mapCards(tableCardTemplate, filteredCards);
+        cardsArea.append(tableCards);
     };
 
     searchContainer.addEventListener('submit', (event) => {
         event.preventDefault();
-        findEmployeeCardByName(cards);
+        createFilteredGridCards();
     });
 
     gridViewButton.addEventListener('click', () => {
-        const cardComponents = cards.map(createGridCardsFromObj);
-        showCardsNumber(createGridCardsFromObj);
+        const cardComponents = cards.map(createGridCards);
+        showCardsNumber(createGridCards);
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-inactive.png')";
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-active.png')";
     });
 
     tableViewButton.addEventListener('click', () => {
-        const cardComponents = cards.map(createTableCardsFromObj);
-        showCardsNumber(createTableCardsFromObj);
+        const cardComponents = cards.map(createTableCards);
+        showCardsNumber(createTableCards);
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-inactive.png')";
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-active.png')";
     });
