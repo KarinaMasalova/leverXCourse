@@ -67,15 +67,6 @@ window.addEventListener('load', () => {
         return element;
     }
 
-    /* cards with data from object */
-    const cardsWithInfo = cards.map( (obj) => ({
-        photo: obj.photo,
-        engName: obj.engName,
-        ruName: obj.ruName,
-        department: obj.department,
-        room: obj.room,
-    }));
-
     /* doesn't work correctly yet */
     const showCardsNumber = (obj) => {
         const cardsNumber = document.querySelector('.cards-number');
@@ -126,8 +117,7 @@ window.addEventListener('load', () => {
     };
 
     /* creating cards */
-    let cardComponents = cardsWithInfo.map(createGridCardsFromObj);
-    console.log(cardsWithInfo);
+    let cardComponents = cards.map(createGridCardsFromObj);
 
     function saveInputValue() {
         const val = document.querySelector('.search__input').value;
@@ -153,18 +143,18 @@ window.addEventListener('load', () => {
 
     searchContainer.addEventListener('submit', (event) => {
         event.preventDefault();
-        findEmployeeCardByName(cardsWithInfo);
+        findEmployeeCardByName(cards);
     });
 
     gridViewButton.addEventListener('click', () => {
-        const cardComponents = cardsWithInfo.map(createGridCardsFromObj);
+        const cardComponents = cards.map(createGridCardsFromObj);
         showCardsNumber(createGridCardsFromObj);
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-inactive.png')";
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-active.png')";
     });
 
     tableViewButton.addEventListener('click', () => {
-        const cardComponents = cardsWithInfo.map(createTableCardsFromObj);
+        const cardComponents = cards.map(createTableCardsFromObj);
         showCardsNumber(createTableCardsFromObj);
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-inactive.png')";
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-active.png')";
