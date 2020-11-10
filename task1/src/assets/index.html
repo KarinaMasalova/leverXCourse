@@ -31,13 +31,36 @@
                     <span class="ico ico__grid-view"></span>
                     <span class="ico ico__table-view"></span>
                 </div>
+                <!--
+                <table class="cards-table">
+                    <thead class="cards-table__head">
+                        <tr>
+                            <th class="head__column">
+                                <span class="ico ico-photo-table"></span>Photo
+                            </th>
+                            <th class="head__column">
+                                <span class="ico ico-name-table"></span>Name
+                            </th>
+                            <th class="head__column">
+                                <span class="ico ico-department-table"></span>Department
+                            </th>
+                            <th class="head__column">
+                                <span class="ico ico-room-table"></span>Room
+                            </th>
+                        </tr>
+                    </thead>             
+                </table>            
+                -->
             </div>
         </div>
     </main>
+    <footer class="footer"></footer>
     <script src="../index.js"></script>
     <script id="gridCard" type="template">
         <div class="card">
-            <div class="card__img" style="$img"></div>
+            <div class="card__img">
+                <img src="$img" alt="">
+            </div>
             <a class="card__engName">$name</a>
             <p class="card__ruName">$nativeName</p>
             <div class="card__info">
@@ -51,6 +74,21 @@
                 </div>
             </div>
         </div>
+    </script>
+    <script id="tableCard" type="template">
+        <tbody>
+            <tr>
+                <td class="table-card__img" rowspan="2" width="9%">
+                    <img src="$img" alt="">
+                </td>
+                <td class="table-card__engName" width="40%">$name</td>
+                <td class="table-card__department" rowspan="2" width="35%">$department</td>
+                <td class="table-card__room" rowspan="2" width="15%">$room</td>
+            </tr>
+            <tr>
+                <td class="table-card__ruName">$nativeName</td>
+            </tr>
+        <tbody>
     </script>
 </body>
 </html>

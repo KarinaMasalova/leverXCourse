@@ -3,7 +3,7 @@ const cards = [
         photo: 'img/1.jpg',
         engName: 'Dzmitry Antonenka',
         ruName: 'Дмитрий Антоненко',
-        department: 'Web & Mobile',
+        department: 'Accounting',
         room: 1601,
     },
     {
@@ -17,7 +17,7 @@ const cards = [
         photo: 'img/3.jpg',
         engName: 'Maxim Podolsky',
         ruName: 'Максим Подольский',
-        department: 'Web & Mobile',
+        department: 'Accounting',
         room: 1607,
     },
     {
@@ -57,8 +57,9 @@ window.addEventListener('load', () => {
     const gridViewButton = document.querySelector('.ico__grid-view');
     const gridCards = createElement('div', 'cards');
     const tableCards = createElement('table', 'cards-table');
+    tableCards.setAttribute('cellpadding', '15%');
     const gridCardTemplate = document.getElementById('gridCard').textContent;
-    //const tableCardTemplate = document.getElementById('tableCard').textContent;
+    const tableCardTemplate = document.getElementById('tableCard').textContent;
    
     /* helper for creating elements */
     function createElement(tag, ...classes) {
@@ -83,7 +84,8 @@ window.addEventListener('load', () => {
         return cards
             .map((card) => 
                 cardTemplate
-                    .replace('$img', `background-image:url('${card.photo}')`)
+                    .replace('$altName', card.engName)
+                    .replace('$img', card.photo)
                     .replace('$name', card.engName)
                     .replace('$nativeName', card.ruName)
                     .replace('$department', card.department)
@@ -143,6 +145,7 @@ window.addEventListener('load', () => {
 
     gridViewButton.addEventListener('click', () => {
         const cardComponents = cards.map(createGridCards);
+        cardsArea.removeChild(tableCards);
         showCardsNumber(createGridCards);
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-inactive.png')";
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-active.png')";
@@ -150,6 +153,7 @@ window.addEventListener('load', () => {
 
     tableViewButton.addEventListener('click', () => {
         const cardComponents = cards.map(createTableCards);
+        cardsArea.removeChild(gridCards);
         showCardsNumber(createTableCards);
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-inactive.png')";
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-active.png')";
