@@ -60,6 +60,7 @@ window.addEventListener('load', () => {
     tableCards.setAttribute('cellpadding', '15%');
     const gridCardTemplate = document.getElementById('gridCard').textContent;
     const tableCardTemplate = document.getElementById('tableCard').textContent;
+    const cardsNumber = document.querySelector('.cards-number');
    
     /* helper for creating elements */
     function createElement(tag, ...classes) {
@@ -69,16 +70,6 @@ window.addEventListener('load', () => {
         }
         return element;
     }
-
-    /* doesn't work correctly yet */
-    const showCardsNumber = (obj) => {
-        const cardsNumber = document.querySelector('.cards-number');
-        if (obj.length > 1) {
-            cardsNumber.textContent = obj.length + ' employees displayed';
-        } else {
-            cardsNumber.textContent = obj.length + ' employee displayed';
-        }
-    };
 
     const mapCards = (cardTemplate, cards) => {
         return cards
@@ -104,9 +95,6 @@ window.addEventListener('load', () => {
         cardsArea.append(tableCards);
     };
 
-    /* creating cards */
-    let cardComponents = cards.map(createGridCards);
-
     function saveInputValue() {
         const val = document.querySelector('.search__input').value;
         let lowerCaseValue = val.toLowerCase();
@@ -127,17 +115,36 @@ window.addEventListener('load', () => {
         return filteredCards;
     };
 
+    const displayEmployeesAmountText = (cardsAmount, text) => {
+        return cardsNumber.textContent = cardsAmount + ' ' + text;
+    };
+
+    const showCardsNumber = (arr) => {
+        const amount = arr.length;
+        if (arr.length > 1) {
+            displayEmployeesAmountText(amount, 'employees displayed');
+        } else {
+            displayEmployeesAmountText(amount, 'employee displayed');
+        }
+    };
+
     const createFilteredGridCards = ()  => {
         const filteredCards = findEmployeeCardByName(cards);
         gridCards.innerHTML = mapCards(gridCardTemplate, filteredCards);
+        showCardsNumber(filteredCards);
         cardsArea.append(gridCards);
     };
 
     const createFilteredTableCards = ()  => {
         const filteredCards = findEmployeeCardByName(cards);
         tableCards.innerHTML = mapCards(tableCardTemplate, filteredCards);
+        showCardsNumber(filteredCards);
         cardsArea.append(tableCards);
     };
+
+    /* creating cards */
+    let cardComponents = cards.map(createGridCards);
+    showCardsNumber(cardComponents);
 
     searchContainer.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -151,7 +158,6 @@ window.addEventListener('load', () => {
     gridViewButton.addEventListener('click', () => {
         const cardComponents = cards.map(createGridCards);
         cardsArea.removeChild(tableCards);
-        showCardsNumber(createGridCards);
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-inactive.png')";
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-active.png')";
     });
@@ -159,7 +165,6 @@ window.addEventListener('load', () => {
     tableViewButton.addEventListener('click', () => {
         const cardComponents = cards.map(createTableCards);
         cardsArea.removeChild(gridCards);
-        showCardsNumber(createTableCards);
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-inactive.png')";
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-active.png')";
     });
