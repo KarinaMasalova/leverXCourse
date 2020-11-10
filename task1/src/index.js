@@ -134,13 +134,18 @@ window.addEventListener('load', () => {
     };
 
     const createFilteredTableCards = ()  => {
+        const filteredCards = findEmployeeCardByName(cards);
         tableCards.innerHTML = mapCards(tableCardTemplate, filteredCards);
         cardsArea.append(tableCards);
     };
 
     searchContainer.addEventListener('submit', (event) => {
         event.preventDefault();
-        createFilteredGridCards();
+        if(cardsArea.contains(tableCards)) {
+            createFilteredTableCards();
+        } else {
+            createFilteredGridCards();
+        }
     });
 
     gridViewButton.addEventListener('click', () => {
