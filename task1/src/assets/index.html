@@ -31,26 +31,6 @@
                     <span class="ico ico__grid-view"></span>
                     <span class="ico ico__table-view"></span>
                 </div>
-                <!--
-                <table class="cards-table">
-                    <thead class="cards-table__head">
-                        <tr>
-                            <th class="head__column">
-                                <span class="ico ico-photo-table"></span>Photo
-                            </th>
-                            <th class="head__column">
-                                <span class="ico ico-name-table"></span>Name
-                            </th>
-                            <th class="head__column">
-                                <span class="ico ico-department-table"></span>Department
-                            </th>
-                            <th class="head__column">
-                                <span class="ico ico-room-table"></span>Room
-                            </th>
-                        </tr>
-                    </thead>             
-                </table>            
-                -->
             </div>
         </div>
     </main>
@@ -77,19 +57,35 @@
         </div>
     </script>
     <script id="tableCard" type="template">
-        <tbody>
+        <tr>
+            <td class="table-card__img" rowspan="2" width="15%">
+                <img src="$img" alt="">
+            </td>
+            <td class="table-card__engName" width="40%">$name</td>
+            <td class="table-card__department" rowspan="2" width="30%">$department</td>
+            <td class="table-card__room" rowspan="2" width="15%">$room</td>
+        </tr>
+        <tr>
+            <td class="table-card__ruName">$nativeName</td>
+        </tr>
+    </script>
+    <script id="tableHead" type="template">
+        <thead class="cards-table__head">
             <tr>
-                <td class="table-card__img" rowspan="2" width="9%">
-                    <img src="$img" alt="">
-                </td>
-                <td class="table-card__engName" width="40%">$name</td>
-                <td class="table-card__department" rowspan="2" width="35%">$department</td>
-                <td class="table-card__room" rowspan="2" width="15%">$room</td>
+                <th class="head__column">
+                    <span class="ico ico-photo-table"></span>Photo
+                </th>
+                <th class="head__column">
+                    <span class="ico ico-name-table"></span>Name
+                </th>
+                <th class="head__column">
+                    <span class="ico ico-department-table"></span>Department
+                </th>
+                <th class="head__column">
+                    <span class="ico ico-room-table"></span>Room
+                </th>
             </tr>
-            <tr>
-                <td class="table-card__ruName">$nativeName</td>
-            </tr>
-        <tbody>
+        </thead>     
     </script>
     <script id="personalCard" type="template">
         <div class="employee-card">

@@ -36,7 +36,8 @@ const cards = [
         status: 'active',
         startOfEmploymentPeriod: '12 Jan 2010',
         workingDayDuration: '8 hours',
-        vacation: 'Enabled'
+        vacation: 'Enabled',
+        businessCard: 'Business card'
     },
     {
         id: 3,
@@ -55,7 +56,8 @@ const cards = [
         status: 'active',
         startOfEmploymentPeriod: '12 Jan 2010',
         workingDayDuration: '8 hours',
-        vacation: 'Enabled'
+        vacation: 'Enabled',
+        businessCard: 'Business card'
     },
     {
         id: 4,
@@ -74,7 +76,8 @@ const cards = [
         status: 'active',
         startOfEmploymentPeriod: '12 Jan 2010',
         workingDayDuration: '8 hours',
-        vacation: 'Enabled'
+        vacation: 'Enabled',
+        businessCard: 'Business card'
     },
     {
         id: 5,
@@ -93,7 +96,8 @@ const cards = [
         status: 'active',
         startOfEmploymentPeriod: '12 Jan 2010',
         workingDayDuration: '8 hours',
-        vacation: 'Enabled'
+        vacation: 'Enabled',
+        businessCard: 'Business card'
     },
     {
         id: 6,
@@ -112,7 +116,8 @@ const cards = [
         status: 'active',
         startOfEmploymentPeriod: '12 Jan 2010',
         workingDayDuration: '8 hours',
-        vacation: 'Enabled'
+        vacation: 'Enabled',
+        businessCard: 'Business card'
     },
     {
         id: 7,
@@ -131,7 +136,8 @@ const cards = [
         status: 'active',
         startOfEmploymentPeriod: '12 Jan 2010',
         workingDayDuration: '8 hours',
-        vacation: 'Enabled'
+        vacation: 'Enabled',
+        businessCard: 'Business card'
     },
 ];
 
@@ -174,10 +180,13 @@ window.addEventListener('load', () => {
     const gridCards = createElement('div', 'cards');
     const tableCards = createElement('table', 'cards-table');
     tableCards.setAttribute('cellpadding', '15%');
+    const tableHead = document.createElement('thead', 'thead');
+    const tableHeadTemplate = document.getElementById('tableHead').textContent;
+    const tableBody = createElement('tbody');
     const gridCardTemplate = document.getElementById('gridCard').textContent;
     const tableCardTemplate = document.getElementById('tableCard').textContent;
     const fullInfoCardTemplate = document.getElementById('personalCard').textContent;
-    const cardsNumber = document.querySelector('.cards-number');    
+    const cardsNumber = document.querySelector('.cards-number');
     const main = document.querySelector('main');
 
     /* show template in console with replaced fields */
@@ -290,23 +299,12 @@ window.addEventListener('load', () => {
     });
 
     tableViewButton.addEventListener('click', () => {
-        const cardComponents = cards.map(createTableCards);
         cardsArea.removeChild(gridCards);
+        tableHead.innerHTML = tableHeadTemplate;
+        tableBody.append(cards.map(createTableCards));
+        tableCards.append(tableHead);
+        cardsArea.append(tableCards);
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-inactive.png')";
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-active.png')";
     });
 });
-
-/*
-
-const express = require('express');
-
-const app = express();
-
-app.get('/', (request, response) => {
-
-});
-
-app.listen(5000, () => console.log('Server has been started));
-
-*/

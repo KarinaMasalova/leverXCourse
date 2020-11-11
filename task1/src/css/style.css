@@ -380,8 +380,14 @@ tbody {
     border-radius: 5px;
 }
 
-.head-column {
+.head__column {
     clear: left;
+    font-family: var(--font);
+    font-size: 1.3rem;
+}
+
+.head__column > span {
+    padding-right: 5px;
 }
 
 th {
