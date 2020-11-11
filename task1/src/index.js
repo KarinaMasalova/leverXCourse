@@ -16,7 +16,8 @@ const cards = [
         status: 'active',
         startOfEmploymentPeriod: '12 Jan 2010',
         workingDayDuration: '8 hours',
-        vacation: 'Enabled'
+        vacation: 'Enabled',
+        businessCard: 'Business card'
     },
     {
         id: 2,
@@ -134,6 +135,37 @@ const cards = [
     },
 ];
 
+// find employee obj in cards by id
+const obj = function getObjWithFullInfoAboutEmployee(id = 1) { /* ??? id by default */
+    const card = cards.filter((card) => card.id == id)[0];
+    return card;
+}();
+
+console.log(obj)
+
+const mapFullInfoCard = (template, card) => {
+    return template
+        .replace('$id', card.id)
+        .replace('$ID', card.id)
+        .replace('$sex', card.sex)
+        .replace('$img', card.photo)
+        .replace('$name', card.engName)
+        .replace('$nativeName', card.ruName)
+        .replace('$department', card.department)
+        .replace('$room', card.room)
+        .replace('$internalPhone', card.internalPhone)
+        .replace('$mobilePhone', card.mobilePhone)
+        .replace('$email', card.email)
+        .replace('$skypeID', card.skypeID)
+        .replace('$cNumber', card.cNumber)
+        .replace('$hireDate', card.hireDate)
+        .replace('$status', card.status)
+        .replace('$startPeriod', card.startOfEmploymentPeriod)
+        .replace('$workingDayDuration', card.workingDayDuration)
+        .replace('$vacation', card.vacation)
+        .replace('$businessCard', card.businessCard);
+};
+
 window.addEventListener('load', () => {
     const cardsArea = document.querySelector('.cards-area');
     const searchContainer = document.querySelector('.search__container');
@@ -144,8 +176,19 @@ window.addEventListener('load', () => {
     tableCards.setAttribute('cellpadding', '15%');
     const gridCardTemplate = document.getElementById('gridCard').textContent;
     const tableCardTemplate = document.getElementById('tableCard').textContent;
-    const cardsNumber = document.querySelector('.cards-number');
-   
+    const fullInfoCardTemplate = document.getElementById('personalCard').textContent;
+    const cardsNumber = document.querySelector('.cards-number');    
+    const main = document.querySelector('main');
+
+    /* show template in console with replaced fields */
+    console.log(mapFullInfoCard(fullInfoCardTemplate, obj));
+
+    const createFullCardLayoutFromTemplate = () => {
+        main.innerHTML = mapFullInfoCard(fullInfoCardTemplate, obj);
+    };
+
+    //console.log(createFullCardLayoutFromTemplate());
+
     /* helper for creating elements */
     function createElement(tag, ...classes) {
         const element = document.createElement(tag);
@@ -159,7 +202,7 @@ window.addEventListener('load', () => {
         return cards
             .map((card) => 
                 cardTemplate
-                    .replace('$altName', card.engName)
+                    .replace('$id', card.id)
                     .replace('$img', card.photo)
                     .replace('$name', card.engName)
                     .replace('$nativeName', card.ruName)
@@ -253,3 +296,17 @@ window.addEventListener('load', () => {
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-active.png')";
     });
 });
+
+/*
+
+const express = require('express');
+
+const app = express();
+
+app.get('/', (request, response) => {
+
+});
+
+app.listen(5000, () => console.log('Server has been started));
+
+*/
