@@ -35,39 +35,9 @@
         </div>
     </main>
     <footer class="footer"></footer>
-    <script src="../index.js"></script>
-    <script>
-    const requestURL = 'http://localhost:5000';
-    function sendRequest(method, url) {
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.responseType = 'json'; // equal to JSON.parse()
-
-            xhr.open(method, url);
-            
-            xhr.onload = () => {
-                if (xhr.status >= 400) {
-                    reject(xhr.response);
-                } else {
-                    resolve(xhr.response);
-                }
-            }
-            
-            xhr.onerror = () => {
-                reject(xhr.response);
-            }
-            
-            xhr.send();
-        });
-    }
-
-    // sendRequest('GET', requestURL)
-    //     .then(data => console.log(data))
-    //     .catch(err => console.log(err));
-    </script>
-    
+    <script src="../index.js"></script>    
     <script id="gridCard" type="template">
-        <div class="card" onclick="createFullCardLayout()">
+        <div class="card" onclick="getObjWithFullInfoAboutEmployee($id)">
             <div class="card__img">
                 <img src="$img" alt="">
             </div>
@@ -120,7 +90,7 @@
         <div class="employee-card">
             <div class="employee">
                 <span class="return-button"></span>
-                <img class="employee__photo" alt="" src="./img/1.jpg">
+                <img class="employee__photo" alt="" src="$img">
                 <span class="employee__sex">— $sex —</span>
                 <h1 class="employee__name">$name</h1>
                 <h2 class="employee__nativeName">$nativeName</h2>
