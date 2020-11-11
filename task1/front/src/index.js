@@ -1,4 +1,5 @@
 let cards;
+let isGrid = true;
 
 const cardsArea = document.querySelector('.cards-area');
 const searchContainer = document.querySelector('.search__container');
@@ -15,6 +16,7 @@ const tableBody = createElement('tbody');
 
 const allEmployeesRequestURL = 'http://localhost:5000';
 const oneEmployeeRequestByIdURL = (id) => `http://localhost:5000/${id}`;
+const filteredEmployeesRequestURL = (inputValue) => `http://localhost:5000/filter?inputValue=${inputValue}`;
 
 let tableHeadTemplate;
 let gridCardTemplate;
@@ -49,7 +51,17 @@ const createGridCards = () => {
     cardsArea.append(gridCards);
 };
 
+const createGridCardsWithParam = (cards) => {
+    gridCards.innerHTML = mapCards(gridCardTemplate, cards);
+    cardsArea.append(gridCards);
+};
+
 const createTableCards = () => {
+    tableCards.innerHTML = mapCards(tableCardTemplate, cards);
+    cardsArea.append(tableCards);
+};
+
+const createTableCardsWithParam = (cards) => {
     tableCards.innerHTML = mapCards(tableCardTemplate, cards);
     cardsArea.append(tableCards);
 };
@@ -59,20 +71,6 @@ function saveInputValue() {
     let lowerCaseValue = val.toLowerCase();
     return lowerCaseValue;
 }
-
-function findEmployeeCardByName(cards) {  
-    let inputValue = saveInputValue();
-    let filteredCards = cards.filter((card) => {
-        return card.engName
-            .toLowerCase()
-            .includes(inputValue.toLowerCase().trim())
-        ||
-        card.ruName
-            .toLowerCase()
-            .includes(inputValue.toLowerCase().trim());
-    });
-    return filteredCards;
-};
 
 const displayEmployeesAmountText = (cardsAmount, text) => {
     return cardsNumber.textContent = cardsAmount + ' ' + text;
@@ -88,14 +86,14 @@ const showCardsNumber = (arr) => {
 };
 
 const createFilteredGridCards = ()  => {
-    const filteredCards = findEmployeeCardByName(cards);
+    const filteredCards = fetchFilteredEmployees();
     gridCards.innerHTML = mapCards(gridCardTemplate, filteredCards);
     showCardsNumber(filteredCards);
     cardsArea.append(gridCards);
 };
 
 const createFilteredTableCards = ()  => {
-    const filteredCards = findEmployeeCardByName(cards);
+    const filteredCards = fetchFilteredEmployees();
     tableCards.innerHTML = mapCards(tableCardTemplate, filteredCards);
     showCardsNumber(filteredCards);
     cardsArea.append(tableCards);
@@ -173,6 +171,19 @@ const fetchAllEmployees = () => {
         .catch(err => console.log(err));
 }
 
+const fetchFilteredEmployees = () => {
+    let inputValue = saveInputValue();
+    fetch(filteredEmployeesRequestURL(inputValue))
+        .then(data => {
+            if (isGrid) {
+                createGridCardsWithParam(data);
+            } else {
+                createTableCardsWithParam(data);
+            }
+        })
+        .catch(err => console.log(err));
+};
+
 window.addEventListener('load', () => {
     tableHeadTemplate = document.getElementById('tableHead').textContent;
     gridCardTemplate = document.getElementById('gridCard').textContent;
@@ -181,14 +192,11 @@ window.addEventListener('load', () => {
 
     searchContainer.addEventListener('submit', (event) => {
         event.preventDefault();
-        if(cardsArea.contains(tableCards)) {
-            createFilteredTableCards();
-        } else {
-            createFilteredGridCards();
-        }
+        fetchFilteredEmployees();
     });
 
     gridViewButton.addEventListener('click', () => {
+        isGrid = true;
         const cardComponents = cards.map(createGridCards);
         cardsArea.removeChild(tableCards);
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-inactive.png')";
@@ -196,6 +204,7 @@ window.addEventListener('load', () => {
     });
 
     tableViewButton.addEventListener('click', () => {
+        isGrid = false;
         cardsArea.removeChild(gridCards);
         tableHead.innerHTML = tableHeadTemplate;
         tableBody.append(cards.map(createTableCards));

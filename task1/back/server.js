@@ -20,6 +20,19 @@ app.get('/', (request, response) => {
     response.send(cards);
 });
 
+// get filtered cards by input search
+app.get('/filter', (request, response) => {
+    let inputValue = request.query.inputValue.trim();
+    response.send(cards.cards.filter((card) => {
+        return card.engName
+            .toLowerCase()
+            .includes(inputValue) ||
+                card.ruName
+            .toLowerCase()
+            .includes(inputValue);
+    }));
+});
+
 // get card by id
 app.get('/:id', (request, response) => {
     response.send(cards.cards.filter((card) => card.id == request.params.id)[0]);
