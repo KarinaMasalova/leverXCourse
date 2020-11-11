@@ -1,5 +1,7 @@
 const express = require('express');
 const fs = require("fs");
+const cors = require("cors");
+
 let cards;
 
 fs.readFile(__dirname + "/employees.json", (error, data) => {
@@ -10,6 +12,8 @@ fs.readFile(__dirname + "/employees.json", (error, data) => {
 });
 
 const app = express();
+
+app.use(cors());
 
 // get all cards
 app.get('/', (request, response) => {
