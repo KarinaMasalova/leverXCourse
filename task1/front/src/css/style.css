@@ -384,6 +384,7 @@ tbody {
     clear: left;
     font-family: var(--font);
     font-size: 1.3rem;
+    cursor: pointer;
 }
 
 .head__column > span {
