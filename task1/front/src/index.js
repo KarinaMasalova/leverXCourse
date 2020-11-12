@@ -1,5 +1,6 @@
-let cards;
+let allCards;
 let isGrid = true;
+let clickAmount = 0;
 
 const cardsArea = document.querySelector('.cards-area');
 const searchContainer = document.querySelector('.search__container');
@@ -47,7 +48,7 @@ const mapCards = (cardTemplate, cards) => {
 };
 
 const createGridCards = () => {
-    gridCards.innerHTML = mapCards(gridCardTemplate, cards);
+    gridCards.innerHTML = mapCards(gridCardTemplate, allCards);
     cardsArea.append(gridCards);
 };
 
@@ -57,7 +58,7 @@ const createGridCardsWithParam = (cards) => {
 };
 
 const createTableCards = () => {
-    tableCards.innerHTML = mapCards(tableCardTemplate, cards);
+    tableCards.innerHTML = mapCards(tableCardTemplate, allCards);
     cardsArea.append(tableCards);
 };
 
@@ -99,7 +100,7 @@ const createFilteredTableCards = ()  => {
 
 // find employee obj in cards by id
 function getObjWithFullInfoAboutEmployee(id) {
-    const card = cards.filter((card) => card.id == id)[0];
+    const card = allCards.filter((card) => card.id == id)[0];
     fetchOneEmployee(card.id);
     return card;
 };
@@ -130,6 +131,46 @@ const mapFullInfoCard = (template, card) => {
 const createFullCardLayoutFromTemplate = (obj) => {
     main.innerHTML = mapFullInfoCard(fullInfoCardTemplate, obj);
 };
+
+function ascSortCards(a, b) {
+    if (a.engName < b.engName) return -1;
+    if (a.engName > b.engName ) return 1;
+    return 0;
+}
+
+function descSortCards(a, b) {
+    if (a.engName < b.engName) return 1;
+    if (a.engName > b.engName ) return -1;
+    return 0;
+}
+
+const appendTableHead = () => {
+    tableHead.innerHTML = tableHeadTemplate;
+    tableCards.append(tableHead);
+    cardsArea.append(tableCards);
+}
+
+const sortCardsByClick = (cards) => {
+    clickAmount += 1;
+    if (clickAmount % 3 === 1) {
+        tableBody.innerHTML = createTableCardsWithParam(cards.sort(ascSortCards));
+        appendTableHead();
+    } else if (clickAmount % 3 === 2) {
+        tableBody.innerHTML = createTableCardsWithParam(cards.sort(descSortCards));
+        appendTableHead();
+    } else {
+        tableBody.innerHTML = createTableCardsWithParam(cards);
+        appendTableHead();
+    }
+};
+
+function a() {
+    let cardsInOrderAsInObj= [];
+    allCards.forEach((card) => {
+        cardsInOrderAsInObj.push(card);
+    });
+    sortCardsByClick(cardsInOrderAsInObj);
+}
 
 /* request wrapper */
 function fetch(url, method = 'GET') {
@@ -162,8 +203,8 @@ const fetchOneEmployee = (id) => {
 const fetchAllEmployees = () => {
     fetch(allEmployeesRequestURL)
         .then(data => {
-            cards = data.cards; /* get data from json */
-            let cardComponents = cards.map(createGridCards);
+            allCards = data.cards; /* get data from json */
+            let cardComponents = allCards.map(createGridCards);
             showCardsNumber(cardComponents);
         })
         .catch(err => console.log(err));
@@ -178,6 +219,7 @@ const fetchFilteredEmployees = () => {
                 showCardsNumber(data);
             } else {
                 createTableCardsWithParam(data);
+                appendTableHead();
                 showCardsNumber(data);
             }
         })
@@ -197,7 +239,7 @@ window.addEventListener('load', () => {
 
     gridViewButton.addEventListener('click', () => {
         isGrid = true;
-        const cardComponents = cards.map(createGridCards);
+        const cardComponents = allCards.map(createGridCards);
         cardsArea.removeChild(tableCards);
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-inactive.png')";
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-active.png')";
@@ -206,10 +248,8 @@ window.addEventListener('load', () => {
     tableViewButton.addEventListener('click', () => {
         isGrid = false;
         cardsArea.removeChild(gridCards);
-        tableHead.innerHTML = tableHeadTemplate;
-        tableBody.append(cards.map(createTableCards));
-        tableCards.append(tableHead);
-        cardsArea.append(tableCards);
+        tableBody.append(allCards.map(createTableCards));
+        appendTableHead();
         gridViewButton.style.backgroundImage = "url('../assets/img/icons/grid-view-inactive.png')";
         tableViewButton.style.backgroundImage = "url('../assets/img/icons/line-view-active.png')";
     });
