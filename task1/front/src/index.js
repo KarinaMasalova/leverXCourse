@@ -88,14 +88,12 @@ const showCardsNumber = (arr) => {
 const createFilteredGridCards = ()  => {
     const filteredCards = fetchFilteredEmployees();
     gridCards.innerHTML = mapCards(gridCardTemplate, filteredCards);
-    showCardsNumber(filteredCards);
     cardsArea.append(gridCards);
 };
 
 const createFilteredTableCards = ()  => {
     const filteredCards = fetchFilteredEmployees();
     tableCards.innerHTML = mapCards(tableCardTemplate, filteredCards);
-    showCardsNumber(filteredCards);
     cardsArea.append(tableCards);
 };
 
@@ -177,8 +175,10 @@ const fetchFilteredEmployees = () => {
         .then(data => {
             if (isGrid) {
                 createGridCardsWithParam(data);
+                showCardsNumber(data);
             } else {
                 createTableCardsWithParam(data);
+                showCardsNumber(data);
             }
         })
         .catch(err => console.log(err));
