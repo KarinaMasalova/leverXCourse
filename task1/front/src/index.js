@@ -33,6 +33,8 @@ function createElement(tag, ...classes) {
     return element;
 }
 
+/* mapping */
+
 const mapCards = (cardTemplate, cards) => {
     return cards
         .map((card) => 
@@ -45,64 +47,6 @@ const mapCards = (cardTemplate, cards) => {
                 .replace('$room', card.room)
         )
         .join('');
-};
-
-const createGridCards = () => {
-    gridCards.innerHTML = mapCards(gridCardTemplate, allCards);
-    cardsArea.append(gridCards);
-};
-
-const createGridCardsWithParam = (cards) => {
-    gridCards.innerHTML = mapCards(gridCardTemplate, cards);
-    cardsArea.append(gridCards);
-};
-
-const createTableCards = () => {
-    tableCards.innerHTML = mapCards(tableCardTemplate, allCards);
-    cardsArea.append(tableCards);
-};
-
-const createTableCardsWithParam = (cards) => {
-    tableCards.innerHTML = mapCards(tableCardTemplate, cards);
-    cardsArea.append(tableCards);
-};
-
-function saveInputValue() {
-    const val = document.querySelector('.search__input').value;
-    let lowerCaseValue = val.toLowerCase();
-    return lowerCaseValue;
-}
-
-const displayEmployeesAmountText = (cardsAmount, text) => {
-    return cardsNumber.textContent = cardsAmount + ' ' + text;
-};
-
-const showCardsNumber = (arr) => {
-    const amount = arr.length;
-    if (arr.length > 1) {
-        displayEmployeesAmountText(amount, 'employees displayed');
-    } else {
-        displayEmployeesAmountText(amount, 'employee displayed');
-    }
-};
-
-const createFilteredGridCards = ()  => {
-    const filteredCards = fetchFilteredEmployees();
-    gridCards.innerHTML = mapCards(gridCardTemplate, filteredCards);
-    cardsArea.append(gridCards);
-};
-
-const createFilteredTableCards = ()  => {
-    const filteredCards = fetchFilteredEmployees();
-    tableCards.innerHTML = mapCards(tableCardTemplate, filteredCards);
-    cardsArea.append(tableCards);
-};
-
-// find employee obj in cards by id
-function getObjWithFullInfoAboutEmployee(id) {
-    const card = allCards.filter((card) => card.id == id)[0];
-    fetchOneEmployee(card.id);
-    return card;
 };
 
 const mapFullInfoCard = (template, card) => {
@@ -128,9 +72,64 @@ const mapFullInfoCard = (template, card) => {
         .replace('$businessCard', card.businessCard);
 };
 
+/* creating cards from templates */
+
+const createCards = (template, cards, container) => {
+    container.innerHTML = mapCards(template, cards);
+    cardsArea.append(container);
+};
+
+const createGridCards = () => {
+    createCards(gridCardTemplate, allCards, gridCards);
+};
+
+const createTableCards = () => {
+    createCards(tableCardTemplate, allCards, tableCards);
+};
+
 const createFullCardLayoutFromTemplate = (obj) => {
     main.innerHTML = mapFullInfoCard(fullInfoCardTemplate, obj);
 };
+
+/* save value from search bar */
+
+function saveInputValue() {
+    const val = document.querySelector('.search__input').value;
+    let lowerCaseValue = val.toLowerCase();
+    return lowerCaseValue;
+}
+
+/* show cards number */
+
+const displayEmployeesAmountText = (cardsAmount, text) => {
+    return cardsNumber.textContent = cardsAmount + ' ' + text;
+};
+
+const showCardsNumber = (arr) => {
+    const amount = arr.length;
+    if (arr.length > 1) {
+        displayEmployeesAmountText(amount, 'employees displayed');
+    } else {
+        displayEmployeesAmountText(amount, 'employee displayed');
+    }
+};
+
+// find employee obj in cards by id
+function getObjWithFullInfoAboutEmployee(id) {
+    const card = allCards.filter((card) => card.id == id)[0];
+    fetchOneEmployee(card.id);
+    return card;
+};
+
+/* adding table head to DOM */
+
+const appendTableHead = () => {
+    tableHead.innerHTML = tableHeadTemplate;
+    tableCards.append(tableHead);
+    cardsArea.append(tableCards);
+}
+
+/* sorting cards */
 
 function ascSortCards(a, b) {
     if (a.engName < b.engName) return -1;
@@ -144,27 +143,21 @@ function descSortCards(a, b) {
     return 0;
 }
 
-const appendTableHead = () => {
-    tableHead.innerHTML = tableHeadTemplate;
-    tableCards.append(tableHead);
-    cardsArea.append(tableCards);
-}
-
 const sortCardsByClick = (cards) => {
     clickAmount += 1;
     if (clickAmount % 3 === 1) {
-        tableBody.innerHTML = createTableCardsWithParam(cards.sort(ascSortCards));
+        tableBody.innerHTML = createCards(tableCardTemplate, cards.sort(ascSortCards), tableCards);
         appendTableHead();
     } else if (clickAmount % 3 === 2) {
-        tableBody.innerHTML = createTableCardsWithParam(cards.sort(descSortCards));
+        tableBody.innerHTML = createCards(tableCardTemplate, cards.sort(descSortCards), tableCards);
         appendTableHead();
     } else {
-        tableBody.innerHTML = createTableCardsWithParam(cards);
+        tableBody.innerHTML = createCards(tableCardTemplate, cards, tableCards);
         appendTableHead();
     }
 };
 
-function a() {
+function onTableHeadClick() {
     let cardsInOrderAsInObj= [];
     allCards.forEach((card) => {
         cardsInOrderAsInObj.push(card);
@@ -192,6 +185,8 @@ function fetch(url, method = 'GET') {
     });
 }
 
+/* requests */
+
 const fetchOneEmployee = (id) => {
     fetch(oneEmployeeRequestByIdURL(id))
         .then(data => {
@@ -215,10 +210,10 @@ const fetchFilteredEmployees = () => {
     fetch(filteredEmployeesRequestURL(inputValue))
         .then(data => {
             if (isGrid) {
-                createGridCardsWithParam(data);
+                createCards(gridCardTemplate, data, gridCards);
                 showCardsNumber(data);
             } else {
-                createTableCardsWithParam(data);
+                createCards(tableCardTemplate, data, tableCards);
                 appendTableHead();
                 showCardsNumber(data);
             }
