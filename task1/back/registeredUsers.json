@@ -1,0 +1,24 @@
+{
+	"users": [
+		{
+			"login": "karina.masalova@gmail.com",
+			"password": "lalala",
+			"status": "admin"
+		},
+		{
+			"login": "vasya.pupkin@gmail.com",
+			"password": "vasya",
+			"status": "user"
+		},
+		{
+			"login": "elena.lomakina@mail.ru",
+			"password": "lenkakrasotka",
+			"status": "user"
+		},
+		{
+			"login": "andrew.popov@mail.ru",
+			"password": "andruhasuper",
+			"status": "editor"
+		}
+	]
+}

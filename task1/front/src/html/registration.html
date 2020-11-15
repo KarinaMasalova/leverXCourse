@@ -37,14 +37,14 @@
     </header>
     <main class="main">
         <div class="wrapper log-in">
-            <form class="log-in__form" action="../index.html" method="POST">            
+            <form class="log-in__form" action="registration.html" method="POST">            
                 <div class="login">
                     <label for="login">Login (email)</label>
-                    <input type="text" placeholder="Enter email" name="login" pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]$" required>
+                    <input id="registration-login" type="text" placeholder="Enter email" name="login" pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]$" required>
                 </div>
                 <div class="password">
                     <label for="password">Password</label>
-                    <input type="password" placeholder="Enter password" name="password" required>
+                    <input id="registration-password" type="password" placeholder="Enter password" name="password" required>
                 </div>
                 <div class="confirm-password">
                     <label for="password">Confirm password</label>
@@ -53,14 +53,16 @@
                 <div class="role-selection">
                     <label for="role-btn">Choose your role</label>
                     <div class="role-variants">
-                        <input type="radio" name="role" checked>User
-                        <input type="radio" name="role">Editor
+                        <input class="registration-role" type="radio" name="role" value="user">User
+                        <input class="registration-role" type="radio" name="role" value="editor">Editor
                     </div>
                 </div>
-                <button class="button button_colored form__button" type="submit">Register</button>
+                <button class="button button_colored form__button" type="submit" onClick="addRegisteredUserToJson()">Register</button>
             </form>
         </div>
     </main>
     <footer class="footer"></footer>
+    <script src="../js/registration.js"></script>
+    <script src="../js/_repository.js"></script>
 </body>
 </html>

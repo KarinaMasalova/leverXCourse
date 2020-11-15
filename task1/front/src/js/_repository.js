@@ -1,9 +1,10 @@
 const allEmployeesRequestURL = 'http://localhost:5000';
 const oneEmployeeRequestByIdURL = (id) => `http://localhost:5000/${id}`;
 const filteredEmployeesRequestURL = (inputValue) => `http://localhost:5000/filter?inputValue=${inputValue}`;
+const registrationUrl = 'http://localhost:5000/register';
 
 /* request wrapper */
-function fetch(url, method = 'GET') {
+function fetchGetRequest(url, method = 'GET') {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.responseType = 'json'; // equal to JSON.parse()
@@ -22,15 +23,29 @@ function fetch(url, method = 'GET') {
     });
 }
 
+function fetchPostRequest(url, body, method = "POST") {
+    const headers = { 'Content-Type': 'application/json' };
+    return fetch(url, {
+        method: method,
+        headers: headers,
+        body: JSON.stringify(body)
+    })
+    .then(response => response.json());
+}
+
+const fetchRegistration = (body) => {
+    return fetchPostRequest(registrationUrl, body);
+}
+
 const fetchOneEmployee = (id) => {
-    return fetch(oneEmployeeRequestByIdURL(id));
+    return fetchGetRequest(oneEmployeeRequestByIdURL(id));
 }
 
 const fetchAllEmployees = () => {
-    return fetch(allEmployeesRequestURL);
+    return fetchGetRequest(allEmployeesRequestURL);
 }
 
 const fetchFilteredEmployees = () => {
     let inputValue = saveInputValue();
-    return  fetch(filteredEmployeesRequestURL(inputValue));    
+    return  fetchGetRequest(filteredEmployeesRequestURL(inputValue));    
 };
