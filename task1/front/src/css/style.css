@@ -179,7 +179,7 @@ p {
 /* REGISTRATION && LOG IN*/
 
 .registration-form,
-.log-in__form {
+.authorization__form {
     padding: 40px 0;
     margin: 0 auto;
     max-width: 40%;
@@ -188,7 +188,7 @@ p {
 }
 
 .registration-form > *,
-.log-in__form > * {
+.authorization__form > * {
     margin-bottom: 20px;
 }
 
