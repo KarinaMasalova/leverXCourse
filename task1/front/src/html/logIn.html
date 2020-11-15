@@ -36,20 +36,22 @@
         </div>
     </header>
     <main class="main">
-        <div class="wrapper log-in">
-            <form class="log-in__form" action="../index.html" method="POST">            
+        <div class="wrapper authorization">
+            <form class="authorization__form" method="POST">            
                 <div class="login">
                     <label for="login">Login (email)</label>
-                    <input type="text" placeholder="Enter email" name="login" required>
+                    <input id="authorization-login" type="text" placeholder="Enter email" name="login" required>
                 </div>
                 <div class="password">
                     <label for="password">Password</label>
-                    <input type="password" placeholder="Enter password" name="password" required>
+                    <input id="authorization-password" type="password" placeholder="Enter password" name="password" required>
                 </div>
-                <button class="button button_colored form__button" type="submit">Log In</button>
+                <button class="button button_colored form__button" type="submit" onCLick="authorize()">Log In</button>
             </form>
         </div>
     </main>
     <footer class="footer"></footer>
+    <script src="../js/_repository.js"></script>
+    <script src="../js/authorization.js"></script>
 </body>
 </html>

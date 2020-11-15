@@ -23,6 +23,15 @@ function addUserToJson(userObj) {
     });
 }
 
+function compareWithRegisteredUsers(obj) {
+    let data = fs.readFileSync(__dirname + "/registeredUsers.json");
+    let users = JSON.parse(data);
+    let filteredUsers = users.users.filter((user) => {
+        return user.password === obj.password && user.login === obj.login
+    });
+    return filteredUsers[0];
+}
+
 fs.readFile(__dirname + "/employees.json", (error, data) => {
     if(error) {
         throw error;
@@ -56,6 +65,14 @@ app.get('/:id', (request, response) => {
 // registration
 app.post('/register', (request, response) => {
     addUserToJson(request.body);
+    response.end();
+});
+
+// authorization
+app.post('/authorize', (request, response) => {
+    const user = compareWithRegisteredUsers(request.body);
+    delete user.password;
+    response.send(user);
 });
 
 app.listen(5000, () => console.log('Server has been started'));

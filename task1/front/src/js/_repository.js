@@ -2,6 +2,7 @@ const allEmployeesRequestURL = 'http://localhost:5000';
 const oneEmployeeRequestByIdURL = (id) => `http://localhost:5000/${id}`;
 const filteredEmployeesRequestURL = (inputValue) => `http://localhost:5000/filter?inputValue=${inputValue}`;
 const registrationUrl = 'http://localhost:5000/register';
+const authorizationUrl = 'http://localhost:5000/authorize';
 
 /* request wrapper */
 function fetchGetRequest(url, method = 'GET') {
@@ -35,6 +36,10 @@ function fetchPostRequest(url, body, method = "POST") {
 
 const fetchRegistration = (body) => {
     return fetchPostRequest(registrationUrl, body);
+}
+
+const fetchAuthorization = (body) => {
+    return fetchPostRequest(authorizationUrl, body);
 }
 
 const fetchOneEmployee = (id) => {
