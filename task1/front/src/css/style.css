@@ -178,7 +178,7 @@ p {
 
 /* REGISTRATION && LOG IN*/
 
-.registration-form,
+.registration__form,
 .authorization__form {
     padding: 40px 0;
     margin: 0 auto;
@@ -187,7 +187,7 @@ p {
     flex-direction: column;
 }
 
-.registration-form > *,
+.registration__form > *,
 .authorization__form > * {
     margin-bottom: 20px;
 }
