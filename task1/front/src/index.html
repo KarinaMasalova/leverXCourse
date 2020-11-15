@@ -70,7 +70,7 @@
     <footer class="footer"></footer>
     <!-- scripts with templates -->
     <script id="gridCard" type="template">
-        <div class="card" onclick="getObjWithFullInfoAboutEmployee($id)">
+        <div class="card" onclick="if(sessionStorage.length) { getObjWithFullInfoAboutEmployee($id); } else { alert('You need to log in to see full information about the employee');}">
             <div class="card__img">
                 <img src="$img" alt="">
             </div>
