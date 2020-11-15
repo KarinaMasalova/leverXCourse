@@ -7,6 +7,8 @@ const authorize = () => {
     }
     fetchAuthorization(body)
         .then(data => {
+            console.log(typeof data);
+            console.log(data)
             sessionStorage.setItem('login', data.login);
             sessionStorage.setItem('status', data.status);
         })

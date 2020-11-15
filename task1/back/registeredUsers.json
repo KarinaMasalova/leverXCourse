@@ -6,19 +6,24 @@
 			"status": "admin"
 		},
 		{
+			"login": "pavel.gromov@mail.ru",
+			"password": "$2b$10$BnkQC63vIURHZDeizqd4z.f7k6MNvTultPdeOGgkENukkm7BIhfMu",
+			"status": "editor"
+		},
+		{
 			"login": "vasya.pupkin@gmail.com",
-			"password": "vasya",
+			"password": "$2b$10$qiD4o0P5./JYBWPt7zK/DOHmmb00qJdGfiBcRwFXZSlDwez8.s4i2",
 			"status": "user"
 		},
 		{
 			"login": "elena.lomakina@mail.ru",
-			"password": "lenkakrasotka",
+			"password": "$2b$10$xM7/HyLUlNu90zGwCTS9L.BFC6LXVET1Ir5afG6gjQq81qFCgZoKe",
 			"status": "user"
 		},
 		{
 			"login": "andrew.popov@mail.ru",
-			"password": "andruhasuper",
-			"status": "editor"
+			"password": "$2b$10$m4330rs.OtcFnB84D6nsFuZbHbkJD0Bw7Zo7PwnEc9VjqD.uUjx0i",
+			"status": "user"
 		}
 	]
 }

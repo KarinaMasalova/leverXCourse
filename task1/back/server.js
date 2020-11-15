@@ -12,10 +12,18 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+function encrypt(password) {
+    const saltRounds = 10;
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(password, salt);
+    return hash;
+}
+
 function addUserToJson(userObj) {
     fs.readFile(__dirname + "/registeredUsers.json", (error, data) => {
         if(error) throw error;
         let users = JSON.parse(data);
+        userObj.password = encrypt(userObj.password);
         users.users.push(userObj);
         let usersJson = JSON.stringify(users, null, "\t");
         fs.writeFile("./registeredUsers.json", usersJson, function (error, data) {
@@ -28,7 +36,8 @@ function compareWithRegisteredUsers(obj) {
     let data = fs.readFileSync(__dirname + "/registeredUsers.json");
     let users = JSON.parse(data);
     let filteredUsers = users.users.filter((user) => {
-        return user.password === obj.password && user.login === obj.login
+        let isPasswordCorrect = bcrypt.compareSync(obj.password, user.password);
+        return isPasswordCorrect && user.login === obj.login
     });
     return filteredUsers[0];
 }
@@ -66,7 +75,7 @@ app.get('/:id', (request, response) => {
 // registration
 app.post('/register', (request, response) => {
     addUserToJson(request.body);
-    response.end();
+    response.send(request.body);
 });
 
 // authorization

@@ -31,7 +31,8 @@ function fetchPostRequest(url, body, method = "POST") {
         headers: headers,
         body: JSON.stringify(body)
     })
-    .then(response => response.json());
+    .then(response => response.json())
+    .catch(err => console.log(err));
 }
 
 const fetchRegistration = (body) => {
