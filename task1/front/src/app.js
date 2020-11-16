@@ -7,6 +7,7 @@ const gridCardTemplate = new GridCardTemplate();
 const tableHeadTemplate = new TableHeadTemplate();
 const tableCardTemplate = new TableCardTemplate();
 const fullInfoCardTemplate = new FullInfoCardTemplate();
+const fullInfoCardForUserTemplate = new FullInfoCardForUserTemplate();
 const cardsArea = new CardsArea();
 const gridCards = new GridCards();
 const tableCards = new TableCards(cardsArea);
@@ -43,12 +44,22 @@ const createFullCardLayoutFromTemplate = (obj) => {
     main.element.innerHTML = mapFullInfoCard(fullInfoCardTemplate, obj);
 };
 
+const createFullCardLayoutForUserFromTemplate = (obj) => {
+    main.element.innerHTML = mapFullInfoCard(fullInfoCardForUserTemplate, obj);
+};
+
 /* find employee obj in cards by id */
 
 function getObjWithFullInfoAboutEmployee(id) {
     const card = allCards.filter((card) => card.id == id)[0];
     fetchOneEmployee(card.id)
-        .then(data => createFullCardLayoutFromTemplate(data))
+        .then(data => {
+            if(statusManager.status !== 'user') {
+                createFullCardLayoutFromTemplate(data);
+            } else {
+                createFullCardLayoutForUserFromTemplate(data);
+            }
+        })
         .catch(err => console.log(err));
     return card;
 };
