@@ -14,6 +14,7 @@ const employeesAmountText = new EmployeesAmountText();
 const tableViewButton = new TableViewButton();
 const gridViewButton = new GridViewButton();
 const searchContainer = new SearchContainer();
+const statusManager = new StatusManager();
 
 fetchAllEmployees()
     .then(data => {
@@ -107,4 +108,5 @@ window.addEventListener('load', () => {
         tableViewButton.element.style.backgroundImage = "url('../assets/img/icons/line-view-inactive.png')";
         gridViewButton.element.style.backgroundImage = "url('../assets/img/icons/grid-view-active.png')";
     });
+    statusManager.logIn();
 });
