@@ -120,4 +120,8 @@ window.addEventListener('load', () => {
         gridViewButton.element.style.backgroundImage = "url('./assets/img/icons/grid-view-active.png')";
     });
     statusManager.logIn();
+    if(statusManager.status !== 'admin') {
+        const navigationSettings = document.getElementById('navigation__settings');
+        navigationSettings.style.display = 'none';
+    }
 });
