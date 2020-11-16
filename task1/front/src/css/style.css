@@ -762,3 +762,16 @@ th {
     filter: brightness(0.9);
     transition: all ease-in .3s;
 }
+
+.edit-status-table {
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.status-table-tbody {
+    background-color: var(--color-light-text);
+}
+
+.registered-user {
+    margin-bottom: 2px;
+}

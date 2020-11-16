@@ -3,6 +3,7 @@ const oneEmployeeRequestByIdURL = (id) => `http://localhost:5000/${id}`;
 const filteredEmployeesRequestURL = (inputValue) => `http://localhost:5000/filter?inputValue=${inputValue}`;
 const registrationUrl = 'http://localhost:5000/register';
 const authorizationUrl = 'http://localhost:5000/authorize';
+const registeredUsersUrl = 'http://localhost:5000/registeredUsers';
 
 /* request wrapper */
 function fetchGetRequest(url, method = 'GET') {
@@ -55,3 +56,7 @@ const fetchFilteredEmployees = () => {
     let inputValue = saveInputValue();
     return  fetchGetRequest(filteredEmployeesRequestURL(inputValue));    
 };
+
+const fetchRegisteredUsersLogin = () => {
+    return fetchGetRequest(registeredUsersUrl);
+}

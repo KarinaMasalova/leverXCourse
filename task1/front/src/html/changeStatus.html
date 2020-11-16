@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="wrapper header__wrapper">
+            <a href="../index.html" class="logo">
+                <span class="organisation-name">leverx group</span>
+                <span class="organisation-service">employee services</span>
+            </a>
+            <nav class="header__navigation">
+                <ul class="navigation">
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link active">Address Book</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link">Leave Requests</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="user-profile">
+                
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="wrapper">
+            <table class="edit-status-table" width="70%">
+                <tbody id="status-table-tbody">
+                    <tr>
+                        <td width="40%">Login</td>
+                        <td width="60%">Status</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer class="footer"></footer>
+    <script type="template" id="registeredUser">
+        <tr class="registered-user">
+            <td class="user-login">$login</td>
+            <td class="status-buttons" width="100%">
+                <button class="button user">User</button>
+                <button class="button editor">Editor</button>
+                <button class="button admin">Admin</button>
+            </td>
+        </tr>
+    </script>
+    <script src="../js/_repository.js"></script>
+    <script src="../js/_mapping.js"></script>
+    <script src="../js/changeStatus.js"></script>
+</body>
+</html>

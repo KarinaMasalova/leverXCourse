@@ -34,3 +34,8 @@ const mapFullInfoCard = (template, card) => {
         .replace('$vacation', card.vacation)
         .replace('$businessCard', card.businessCard);
 };
+
+const mapLoginInTable = (template, user) => {
+    return template
+        .replace('$login', user.login);
+};
