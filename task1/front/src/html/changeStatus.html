@@ -50,9 +50,9 @@
         <tr class="registered-user">
             <td class="user-login">$login</td>
             <td class="status-buttons" width="100%">
-                <button class="button user">User</button>
-                <button class="button editor">Editor</button>
-                <button class="button admin">Admin</button>
+                <button class="button status-button user" onclick="changeStatus('$login', 'user')">user</button>
+                <button class="button status-button editor" onclick="changeStatus('$login', 'editor')">editor</button>
+                <button class="button status-button admin" onclick="changeStatus('$login', 'admin')">admin</button>
             </td>
         </tr>
     </script>

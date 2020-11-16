@@ -775,3 +775,8 @@ th {
 .registered-user {
     margin-bottom: 2px;
 }
+
+.status-button {
+    background-color: var(--color-light);
+    color: var(--color-primary-darker);
+}

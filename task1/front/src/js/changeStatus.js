@@ -17,3 +17,15 @@ fetchRegisteredUsersLogin()
         users.map((user) => createUser(user));
     })
     .catch(err => console.log(err));
+
+function changeStatus(login, status) {
+    const body = {
+        login: login,
+        status: status
+    }
+    fetchStatus(body)
+        .then(data => {
+            console.log(data);
+        })
+        .catch(err => console.log(err));
+}

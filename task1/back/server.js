@@ -43,6 +43,19 @@ function compareWithRegisteredUsers(obj) {
     return filteredUsers[0];
 }
 
+function findUserByLogin(obj) {
+    let data = fs.readFileSync(__dirname + "/registeredUsers.json");
+    let users = JSON.parse(data);
+    users.users.forEach((user) => {
+        if(user.login === obj.login) {
+            user.status = obj.status;
+        }
+    });
+    users = JSON.stringify(users, null, "\t");
+    fs.writeFileSync("./registeredUsers.json", users);
+    return users;
+}
+
 fs.readFile(__dirname + "/employees.json", (error, data) => {
     if(error) {
         throw error;
@@ -98,6 +111,12 @@ app.post('/authorize', (request, response) => {
     const user = compareWithRegisteredUsers(request.body);
     delete user.password;
     response.send(user);
+});
+
+// change user status
+app.post('/changeStatus', (request, response) => {
+    findUserByLogin(request.body);
+    response.send(request.body);
 });
 
 app.listen(5000, () => console.log('Server has been started'));
