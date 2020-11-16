@@ -109,15 +109,15 @@ window.addEventListener('load', () => {
         cardsArea.removeChild(gridCards);
         tableCards.tableBody.append(allCards.map(createTableCards));
         tableCards.appendTableHead(tableHeadTemplate);
-        gridViewButton.element.style.backgroundImage = "url('../assets/img/icons/grid-view-inactive.png')";
-        tableViewButton.element.style.backgroundImage = "url('../assets/img/icons/line-view-active.png')";
+        gridViewButton.element.style.backgroundImage = "url('./assets/img/icons/grid-view-inactive.png')";
+        tableViewButton.element.style.backgroundImage = "url('./assets/img/icons/line-view-active.png')";
     });
     gridViewButton.addEventListener('click', () => {
         isGrid = true;
         const cardComponents = allCards.map(createGridCards);
         cardsArea.removeChild(tableCards);
-        tableViewButton.element.style.backgroundImage = "url('../assets/img/icons/line-view-inactive.png')";
-        gridViewButton.element.style.backgroundImage = "url('../assets/img/icons/grid-view-active.png')";
+        tableViewButton.element.style.backgroundImage = "url('./assets/img/icons/line-view-inactive.png')";
+        gridViewButton.element.style.backgroundImage = "url('./assets/img/icons/grid-view-active.png')";
     });
     statusManager.logIn();
 });
