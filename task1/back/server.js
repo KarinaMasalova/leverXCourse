@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 
 let cards;
+let registeredUsers;
 
 const app = express();
 
@@ -65,6 +66,20 @@ app.get('/filter', (request, response) => {
             .toLowerCase()
             .includes(inputValue);
     }));
+});
+
+// get user from registeredUsers.json
+app.get('/registeredUsers', (request, response) => {
+    fs.readFile(__dirname + "/registeredUsers.json", (error, data) => {
+        if(error) {
+            throw error;
+        }
+        registeredUsers = JSON.parse(data.toString());
+        registeredUsers.users.forEach((user) => {
+            delete user.password;
+        });
+        response.send(registeredUsers);
+    });
 });
 
 // get card by id
