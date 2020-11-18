@@ -1,4 +1,6 @@
-class CardsArea extends QuerySelectorComponent {
+import QuerySelectorElement from './QuerySelectorElement';
+
+export default class CardsArea extends QuerySelectorElement {
     constructor() {
         super('.cards-area');
     }

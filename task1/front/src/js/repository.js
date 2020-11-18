@@ -1,3 +1,5 @@
+import saveInputValue from './saveInputValue';
+
 const allEmployeesRequestURL = 'http://localhost:5000';
 const oneEmployeeRequestByIdURL = (id) => `http://localhost:5000/${id}`;
 const filteredEmployeesRequestURL = (inputValue) => `http://localhost:5000/filter?inputValue=${inputValue}`;
@@ -65,3 +67,6 @@ const fetchFilteredEmployees = () => {
 const fetchRegisteredUsersLogin = () => {
     return fetchGetRequest(registeredUsersUrl);
 }
+
+export { fetchRegistration, fetchAuthorization, fetchStatus, fetchAllEmployees,
+    fetchOneEmployee , fetchFilteredEmployees, fetchRegisteredUsersLogin };

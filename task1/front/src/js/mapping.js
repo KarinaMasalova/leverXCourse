@@ -39,3 +39,5 @@ const mapLoginInTable = (template, user) => {
     return template
         .replaceAll('$login', user.login);
 };
+
+export { mapCards, mapFullInfoCard, mapLoginInTable };

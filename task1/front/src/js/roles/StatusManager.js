@@ -1,4 +1,6 @@
-class StatusManager {
+import UserProfile from '../elements/UserProfile';
+
+export default class StatusManager {
     constructor() {
         this.status = sessionStorage.getItem('status');
         this.userProfile = new UserProfile();

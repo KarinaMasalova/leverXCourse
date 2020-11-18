@@ -1,3 +1,6 @@
+import { fetchRegisteredUsersLogin, fetchStatus } from '../repository';
+import { mapLoginInTable } from '../mapping';
+
 const registeredUsersTableBody = document.getElementById('status-table-tbody');
 const registeredUserTemplate = document.getElementById('registeredUser').textContent;
 
@@ -29,3 +32,5 @@ function changeStatus(login, status) {
         })
         .catch(err => console.log(err));
 }
+
+export default changeStatus;

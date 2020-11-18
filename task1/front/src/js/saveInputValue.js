@@ -3,3 +3,5 @@ function saveInputValue() {
     let lowerCaseValue = val.toLowerCase();
     return lowerCaseValue;
 }
+
+export default saveInputValue;

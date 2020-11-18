@@ -1,4 +1,6 @@
-class EmployeesAmountText extends QuerySelectorComponent {
+import QuerySelectorElement from './QuerySelectorElement';
+
+export default class EmployeesAmountText extends QuerySelectorElement {
     constructor() {
         super('.cards-number');
     }

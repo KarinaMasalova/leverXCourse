@@ -1,3 +1,5 @@
+import { fetchRegistration } from '../repository';
+
 const saveInputValue = (inputId) => document.getElementById(inputId).value;
 
 const register = (login, password, status) => {
@@ -7,13 +9,11 @@ const register = (login, password, status) => {
         status: status
     }
     fetchRegistration(body)
-        .then(data => {
-            console.log(data);
-        })
+        .then(data => console.log(data))
         .catch(err => console.log(err));
 };
 
-function addRegisteredUserToJson() {
+window.addRegisteredUserToJson = function() {
     let statusRadioButtons = document.querySelectorAll('.registration-role');
     let status;
     let login = saveInputValue('registration-login');
@@ -26,3 +26,5 @@ function addRegisteredUserToJson() {
     });
     register(login, password, status);
 }
+
+export default addRegisteredUserToJson;

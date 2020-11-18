@@ -1,3 +1,5 @@
+import { fetchAuthorization } from '../repository';
+
 const saveInputValue = (inputId) => document.getElementById(inputId).value;
 
 const authorize = () => {
@@ -12,3 +14,5 @@ const authorize = () => {
         })
         .catch(err => console.log(err));
 };
+
+export default authorize;

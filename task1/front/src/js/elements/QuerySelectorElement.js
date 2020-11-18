@@ -1,4 +1,4 @@
-class QuerySelectorComponent {
+export default class QuerySelectorElement {
     constructor(cssSelector) {
         this.element = document.querySelector(cssSelector);
     }
