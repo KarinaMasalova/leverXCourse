@@ -1,4 +1,5 @@
 import { fetchRegistration } from '../repository';
+import styles from '../../sass/style.css';
 
 const saveInputValue = (inputId) => document.getElementById(inputId).value;
 

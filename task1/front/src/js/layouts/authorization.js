@@ -1,4 +1,5 @@
 import { fetchAuthorization } from '../repository';
+import styles from '../../sass/style.css';
 
 const saveInputValue = (inputId) => document.getElementById(inputId).value;
 
@@ -14,5 +15,7 @@ const authorize = () => {
         })
         .catch(err => console.log(err));
 };
+
+window.authorize = authorize;
 
 export default authorize;

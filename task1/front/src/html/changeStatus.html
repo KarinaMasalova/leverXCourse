@@ -4,26 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
-    <link rel="stylesheet" href="../sass/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <div class="wrapper header__wrapper">
-            <a href="./src/index.html" class="logo">
+            <a href="index.html" class="logo">
                 <span class="organisation-name">leverx group</span>
                 <span class="organisation-service">employee services</span>
             </a>
             <nav class="header__navigation">
                 <ul class="navigation">
                     <li class="navigation__item">
-                        <a href="../index.html" class="navigation__link">Address Book</a>
+                        <a href="index.html" class="navigation__link">Address Book</a>
                     </li>
                     <li class="navigation__item">
                         <a href="#" class="navigation__link">Leave Requests</a>
                     </li>
                     <li class="navigation__item" id="navigation__settings">
-                        <a href="./src/html/changeStatus.html" class="navigation__link active">Settings</a>
+                        <a href="changeStatus.html" class="navigation__link active">Settings</a>
                     </li>
                 </ul>
             </nav>
@@ -49,7 +48,7 @@
         <tr class="registered-user">
             <td class="user-login">$login</td>
             <td class="status-buttons" width="100%">
-                <button class="button status-button user" onclick="changeStatus('$login', 'user')">user</button>
+                <button id="status-button-user-$login" class="button status-button user" onclick="changeStatus('$login', 'user')">user</button>
                 <button class="button status-button editor" onclick="changeStatus('$login', 'editor')">editor</button>
                 <button class="button status-button admin" onclick="changeStatus('$login', 'admin')">admin</button>
             </td>
