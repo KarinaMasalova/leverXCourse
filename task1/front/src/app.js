@@ -1,3 +1,22 @@
+import GridCards from './js/components/GridCards';
+import TableCards from './js/components/TableCards';
+import MainContainer from './js/elements/MainContainer';
+import CardsArea from './js/elements/CardsArea';
+import EmployeesAmountText from './js/elements/EmployeesAmountText';
+import TableViewButton from './js/elements/TableViewButton';
+import GridViewButton from './js/elements/GridViewButton';
+import SearchContainer from './js/elements/SearchContainer';
+import GridCardTemplate from './js/templates/GridCardTemplate';
+import TableHeadTemplate from './js/templates/TableHeadTemplate';
+import TableCardTemplate from './js/templates/TableCardTemplate';
+import FullInfoCardTemplate from './js/templates/FullInfoCardTemplate';
+import FullInfoCardForUserTemplate from './js/templates/FullInfoCardForUserTemplate';
+import StatusManager from './js/roles/StatusManager';
+
+import { mapCards, mapFullInfoCard } from './js/mapping';
+import { fetchAllEmployees, fetchOneEmployee , fetchFilteredEmployees } from './js/repository';
+import { ascSortCards, descSortCards } from './js/sorting';
+
 let allCards;
 let isGrid = true;
 let clickAmount = 0;
@@ -50,7 +69,7 @@ const createFullCardLayoutForUserFromTemplate = (obj) => {
 
 /* find employee obj in cards by id */
 
-function getObjWithFullInfoAboutEmployee(id) {
+window.getObjWithFullInfoAboutEmployee = function(id) {
     const card = allCards.filter((card) => card.id == id)[0];
     fetchOneEmployee(card.id)
         .then(data => {
@@ -80,7 +99,7 @@ const sortCardsByClick = (cards) => {
     }
 };
 
-function onTableHeadClick() {
+window.onTableHeadClick = function() {
     let cardsInOrderAsInObj = [];
     allCards.forEach((card) => {
         cardsInOrderAsInObj.push(card);
@@ -109,15 +128,15 @@ window.addEventListener('load', () => {
         cardsArea.removeChild(gridCards);
         tableCards.tableBody.append(allCards.map(createTableCards));
         tableCards.appendTableHead(tableHeadTemplate);
-        gridViewButton.element.style.backgroundImage = "url('./assets/img/icons/grid-view-inactive.png')";
-        tableViewButton.element.style.backgroundImage = "url('./assets/img/icons/line-view-active.png')";
+        gridViewButton.element.style.backgroundImage = "url('./src/img/icons/grid-view-inactive.png')";
+        tableViewButton.element.style.backgroundImage = "url('./src/img/icons/line-view-active.png')";
     });
     gridViewButton.addEventListener('click', () => {
         isGrid = true;
         const cardComponents = allCards.map(createGridCards);
         cardsArea.removeChild(tableCards);
-        tableViewButton.element.style.backgroundImage = "url('./assets/img/icons/line-view-inactive.png')";
-        gridViewButton.element.style.backgroundImage = "url('./assets/img/icons/grid-view-active.png')";
+        tableViewButton.element.style.backgroundImage = "url('./src/img/icons/line-view-inactive.png')";
+        gridViewButton.element.style.backgroundImage = "url('./src/img/icons/grid-view-active.png')";
     });
     statusManager.logIn();
     if(statusManager.status !== 'admin') {
