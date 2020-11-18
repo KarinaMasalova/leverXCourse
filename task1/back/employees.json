@@ -3,7 +3,7 @@
         {
             "id": 1,
             "sex": "Mr",
-            "photo": "./assets/img/1.jpg",
+            "photo": "./src/img/1.jpg",
             "engName": "Dzmitry Antonenka",
             "ruName": "Дмитрий Антоненко",
             "department": "Accounting",
@@ -23,7 +23,7 @@
         {
             "id": 2,
             "sex": "Mr",
-            "photo": "./assets/img/2.jpg",
+            "photo": "./src/img/2.jpg",
             "engName": "Aleh Zhukau",
             "ruName": "Олег Жуков",
             "department": "Web & Mobile",
@@ -43,7 +43,7 @@
         {
             "id": 3,
             "sex": "Mr",
-            "photo": "./assets/img/3.jpg",
+            "photo": "./src/img/3.jpg",
             "engName": "Maxim Podolsky",
             "ruName": "Максим Подольский",
             "department": "Accounting",
@@ -63,7 +63,7 @@
         {
             "id": 4,
             "sex": "Mrs",
-            "photo": "./assets/img/4.jpg",
+            "photo": "./src/img/4.jpg",
             "engName": "Anna Belova",
             "ruName": "Анна Белова",
             "department": "Web & Mobile",
@@ -83,7 +83,7 @@
         {
             "id": 5,
             "sex": "Mr",
-            "photo": "./assets/img/5.jpg",
+            "photo": "./src/img/5.jpg",
             "engName": "Vitaliy Vlasov",
             "ruName": "Виталий Власов",
             "department": "Web & Mobile",
@@ -103,7 +103,7 @@
         {
             "id": 6,
             "sex": "Mr",
-            "photo": "./assets/img/6.jpg",
+            "photo": "./src/img/6.jpg",
             "engName": "Stepan Smirnov",
             "ruName": "Степан Смирнов",
             "department": "Web & Mobile",
@@ -123,7 +123,7 @@
         {
             "id": 7,
             "sex": "Mrs",
-            "photo": "./assets/img/7.jpg",
+            "photo": "./src/img/7.jpg",
             "engName": "Karina Masalova",
             "ruName": "Карина Масалова",
             "department": "Web & Mobile",
