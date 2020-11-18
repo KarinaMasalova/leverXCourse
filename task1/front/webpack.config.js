@@ -17,8 +17,9 @@ module.exports = (env, options) => {
             changeStatus: './src/js/layouts/changeStatus.js'
         },
         output: {
-          path: path.resolve(__dirname, 'dist'),
-          filename: '[name].js'
+            publicPath: '',
+            path: path.resolve(__dirname, 'dist'),
+            filename: '[name].js'
         },
         plugins: [
             new HtmlWebpackPlugin({
