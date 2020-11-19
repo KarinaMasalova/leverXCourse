@@ -48,10 +48,5 @@
         background-color: $color-additional;
         color: $color-light;
         border: 1px solid $color-light;
-        &:hover {
-            background-color: $color-light;
-            color: $color-primary-darker;
-            border: 1px solid $color-additional;
-        }
     }
 }
