@@ -11,8 +11,8 @@
     <header class="header">
         <div class="wrapper header__wrapper">
             <a href="#" class="logo">
-                <span class="organisation-name">leverx group</span>
-                <span class="organisation-service">employee services</span>
+                <span class="logo__name">leverx group</span>
+                <span class="logo__service">employee services</span>
             </a>
             <nav class="header__navigation">
                 <ul class="navigation">
@@ -97,16 +97,20 @@
         <thead class="cards-table__head">
             <tr>
                 <th class="head__column">
-                    <span class="ico ico-photo-table"></span>Photo
+                    <span class="ico ico-photo-table"></span>
+                    <span class="head__column-name">Photo</span>
                 </th>
                 <th class="head__column" onclick="onTableHeadClick()">
-                    <span class="ico ico-name-table"></span>Name
+                    <span class="ico ico-name-table"></span>
+                    <span class="head__column-name">Name</span>
                 </th>
                 <th class="head__column" onclick="onTableHeadClick()">
-                    <span class="ico ico-department-table"></span>Department
+                    <span class="ico ico-department-table"></span>
+                    <span class="head__column-name">Department</span>
                 </th>
                 <th class="head__column">
-                    <span class="ico ico-room-table"></span>Room
+                    <span class="ico ico-room-table"></span>
+                    <span class="head__column-name">Room</span>
                 </th>
             </tr>
         </thead>     
@@ -238,7 +242,7 @@
     <script id="personalCardForUser" type="template">
         <div class="employee-card">
             <div class="employee">
-                <span class="return-button"></span>
+                <span class="button return-button"></span>
                 <img class="employee__photo" alt="" src="$img">
                 <span class="employee__sex">— $sex —</span>
                 <h1 class="employee__name">$name</h1>

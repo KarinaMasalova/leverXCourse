@@ -1,0 +1,27 @@
+// Abstract
+@import "abstract/constants";
+@import "abstract/mixins";
+@import "abstract/placeholders";
+
+// Base
+@import "base/base";
+@import "base/normalize";
+@import "base/logo";
+@import "base/buttons";
+@import "base/icons";
+
+// Components
+@import "components/navigation";
+@import "components/user-profile";
+@import "components/search";
+@import "components/grid-card";
+@import "components/table-card";
+@import "components/full-info-card";
+
+//Layouts
+@import "layouts/wrapper";
+@import "layouts/header";
+@import "layouts/cards";
+@import "layouts/footer";
+@import "layouts/registration-authorization-forms";
+@import "layouts/change-status-table";

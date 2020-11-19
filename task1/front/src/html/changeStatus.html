@@ -10,8 +10,8 @@
     <header class="header">
         <div class="wrapper header__wrapper">
             <a href="index.html" class="logo">
-                <span class="organisation-name">leverx group</span>
-                <span class="organisation-service">employee services</span>
+                <span class="logo__name">leverx group</span>
+                <span class="logo__service">employee services</span>
             </a>
             <nav class="header__navigation">
                 <ul class="navigation">
@@ -27,17 +27,26 @@
                 </ul>
             </nav>
             <div class="user-profile">
-                
+                <div class="user-profile__notification">
+                    <span class="ico notification__ico"></span>
+                </div>
+                <div class="user-profile__user user">
+                    <span class="user__photo"></span>
+                    <span class="user__name">karina masalova</span>
+                </div>
+                <div class="user-profile__power-off">
+                    <span class="ico power-off__ico"></span>
+                </div>
             </div>
         </div>
     </header>
     <main class="main">
         <div class="wrapper">
-            <table class="edit-status-table" width="70%">
+            <table class="edit-status-table" width="50%">
                 <tbody id="status-table-tbody">
                     <tr>
-                        <td width="40%">Login</td>
-                        <td width="60%">Status</td>
+                        <td width="60%" height="40"><span class="status-table__login">Login</span></td>
+                        <td width="40%" height="40"><span  class="status-table__status">Status</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -45,12 +54,12 @@
     </main>
     <footer class="footer"></footer>
     <script type="template" id="registeredUser">
-        <tr class="registered-user">
-            <td class="user-login">$login</td>
+        <tr class="registered-user" height="50">
+            <td><span class="registered-user__login">$login</span></td>
             <td class="status-buttons" width="100%">
-                <button id="status-button-user-$login" class="button status-button user" onclick="changeStatus('$login', 'user')">user</button>
-                <button class="button status-button editor" onclick="changeStatus('$login', 'editor')">editor</button>
-                <button class="button status-button admin" onclick="changeStatus('$login', 'admin')">admin</button>
+                <button class="status-button status-button_bordered user" onclick="changeStatus('$login', 'user')">user</button>
+                <button class="status-button status-button_bordered editor" onclick="changeStatus('$login', 'editor')">editor</button>
+                <button class="status-button status-button_colored admin" onclick="changeStatus('$login', 'admin')">admin</button>
             </td>
         </tr>
     </script>
