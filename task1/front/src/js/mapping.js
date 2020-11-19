@@ -37,7 +37,8 @@ const mapFullInfoCard = (template, card) => {
 
 const mapLoginInTable = (template, user) => {
     return template
-        .replaceAll('$login', user.login);
+        .replaceAll('$login', user.login)
+        .replaceAll('$value', user.status)
 };
 
 export { mapCards, mapFullInfoCard, mapLoginInTable };

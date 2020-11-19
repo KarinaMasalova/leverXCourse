@@ -9,9 +9,6 @@ let users;
 
 const createRegisteredUser = (template, user) => {
     registeredUsersTableBody.innerHTML += mapLoginInTable(template, user);
-    // registeredUsersTableBody.getElementById(`status-button-user-${user.login}`).addEventListener('click', () => {
-    //     console.log(user);
-    // });
 };
 
 const createUser = (user) => {
@@ -35,6 +32,19 @@ window.changeStatus = function(login, status) {
             console.log(data);
         })
         .catch(err => console.log(err));
+}
+
+window.colorButtonByClick = function(eventTarget, userStatus, buttonName, login) {
+    const statusButtons = document.getElementById(`status-buttons-${login}`);
+    Array.from(statusButtons.children).forEach((button) => { // Array.from() convert an array-like structure to an actual array
+        let isColored = button.classList.contains('status-button_colored');
+        if (userStatus !== buttonName && isColored) {
+            button.value = buttonName;
+            button.classList.add('status-button_bordered');
+            button.classList.remove('status-button_colored');
+            eventTarget.classList.add('status-button_colored');
+        }     
+    });
 }
 
 export default changeStatus;

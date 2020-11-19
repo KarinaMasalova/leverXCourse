@@ -56,10 +56,10 @@
     <script type="template" id="registeredUser">
         <tr class="registered-user" height="50">
             <td><span class="registered-user__login">$login</span></td>
-            <td class="status-buttons" width="100%">
-                <button class="status-button status-button_bordered user" onclick="changeStatus('$login', 'user')">user</button>
-                <button class="status-button status-button_bordered editor" onclick="changeStatus('$login', 'editor')">editor</button>
-                <button class="status-button status-button_colored admin" onclick="changeStatus('$login', 'admin')">admin</button>
+            <td id="status-buttons-$login" class="status-buttons" width="100%">
+                <button class="status-button status-button_bordered user" value="$value" name="user" onclick="changeStatus('$login', 'user');colorButtonByClick(event.target, event.target.value, event.target.name, '$login');">user</button>
+                <button class="status-button status-button_bordered editor" value="$value" name="editor" onclick="changeStatus('$login', 'editor');colorButtonByClick(event.target, event.target.value, event.target.name, '$login');">editor</button>
+                <button class="status-button status-button_colored admin" value="$value" name="admin" onclick="changeStatus('$login', 'admin');colorButtonByClick(event.target, event.target.value, event.target.name, '$login');">admin</button>
             </td>
         </tr>
     </script>
