@@ -43,7 +43,7 @@ window.colorButtonByClick = function(eventTarget, userStatus, buttonName, login)
             button.classList.add('status-button_bordered');
             button.classList.remove('status-button_colored');
             eventTarget.classList.add('status-button_colored');
-        }     
+        }
     });
 }
 

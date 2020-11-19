@@ -39,6 +39,9 @@ const mapLoginInTable = (template, user) => {
     return template
         .replaceAll('$login', user.login)
         .replaceAll('$value', user.status)
+        .replaceAll('$userClass', user.status == 'user' ? 'status-button_colored' : 'status-button_bordered')
+        .replaceAll('$editorClass', user.status == 'editor' ? 'status-button_colored' : 'status-button_bordered')
+        .replaceAll('$adminClass', user.status == 'admin' ? 'status-button_colored' : 'status-button_bordered')
 };
 
 export { mapCards, mapFullInfoCard, mapLoginInTable };
