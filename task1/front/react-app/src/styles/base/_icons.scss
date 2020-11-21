@@ -1,0 +1,119 @@
+.ico {
+    cursor: pointer;
+}
+
+.notification__ico {
+    margin: 7px;
+    @include ico-settings($width: 24px, $height: 24px);
+    @include background($image: '../img/icons/notification.svg', $position: center);
+}
+
+.power-off__ico {
+    margin: 5px;
+    @include ico-settings($width: 30px, $height: 30px);
+    @include background($image: '../img/icons/power-off.png', $position: center);
+}
+
+.ico__grid-view {
+    margin: auto 0;
+    @include ico-settings($display: grid);
+    @include background($image: '../img/icons/grid-view-inactive.png', $size: cover);
+    &_active {
+        @include background($image: '../img/icons/grid-view-active.png', $size: cover);
+    }
+}
+
+.ico__table-view {
+    margin: auto 0;
+    @include ico-settings($display: grid);
+    @include background($image: '../img/icons/line-view-inactive.png', $size: cover);
+    &_active {
+        @include background($image: '../img/icons/line-view-active.png', $size: cover);
+    }
+}
+
+/* grid card icons */
+
+.department__ico {
+    margin: auto 0;
+    @include ico-settings($display: grid);
+    @include background($image: '../img/icons/briefcase.svg', $size: cover);
+}
+
+.room__ico {
+    margin: auto 0;
+    @include ico-settings($display: grid);
+    @include background($image: '../img/icons/room.png', $size: cover);
+}
+
+/* table card icons */
+
+.ico-department-table {
+    @include ico-settings();
+    @include background($image: '../img/icons/briefcase.svg');
+}
+
+.ico-room-table {
+    @include ico-settings();
+    @include background($image: '../img/icons/room.png');
+}
+
+.ico-photo-table {
+    @include ico-settings();
+    @include background($image: '../img/icons/round.png');
+}
+
+.ico-name-table {
+    @include ico-settings();
+    @include background($image: '../img/icons/user.png');
+}
+
+/* full info card icons */
+
+.info__item {
+    > span {
+        > span:first-child {
+            @include ico-settings();
+        }
+    }
+}
+
+.internal-phone__ico {
+    @include background('../img/icons/internal-phone.png');
+}
+
+.mobile-phone__ico {
+    @include background('../img/icons/mobile-phone.png');
+}
+
+.email__ico {
+    @include background('../img/icons/email.png');
+}
+
+.skype__ico {
+    @include background('../img/icons/skype.png');
+}
+
+.c-number__ico {
+    @include background('../img/icons/c-number.png');
+}
+
+.hire-date__ico {
+    @include background('../img/icons/hire-date.png');
+}
+
+.status__ico {
+    @include background('../img/icons/status.png');
+}
+
+.start-period__ico {
+    @include background('../img/icons/start-date.png');
+}
+
+.working-day__ico {
+    @include background('../img/icons/duration.png');
+}
+
+.vacation__ico {
+    @include background('../img/icons/vacation.png');
+}

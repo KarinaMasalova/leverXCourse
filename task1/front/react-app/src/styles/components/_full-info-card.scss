@@ -1,0 +1,102 @@
+.employee-card {
+    margin: 20px 0;
+    display: flex;
+    background-color: $color-light;
+    box-shadow: $shadow;
+    border-radius: 5px;
+}
+
+/* employee description*/
+
+.employee {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    > *:not(.return-button) {
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+}
+
+.employee__name {
+    line-height: 1.6rem;
+    color: $color-dark;
+    @include font($size: 2.0rem, $letter: 0.3px);
+}
+
+.employee__photo {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 55%;
+    padding-bottom: 10px;
+}
+
+.employee__tags {
+    display: flex;
+}
+
+.tag {
+    background-color: $color-tag;
+    border-radius: 15px;
+    padding: 7px 10px;
+    &:not(:first-child) {
+        margin-left: 10px;
+    }
+}
+
+/* employee info */
+
+.employee-info {
+    width: 60%;
+    margin: 35px 0;
+    padding: 0 20px;
+    border-left: 2px solid $color-tag;
+}
+
+.info {
+    padding-bottom: 50px;
+}
+
+.info__title {
+    padding-bottom: 7px;
+    border-bottom: 2px solid $color-tag;
+    @extend %uppercased;
+}
+
+.info__item {
+    display: flex;
+    padding-top: 20px;
+    > span {
+        display: flex;
+        width: 50%;
+    }
+}
+
+.info__name {
+    margin: auto 0;
+    padding-left: 15px;
+}
+
+/* cards */
+.employee__sex,
+.employee__nativeName,
+.id-tag,
+.business-card-tag,
+.info__title,
+.info__name {
+    font-family: var(--font);
+    font-size: 1.4rem;
+    line-height: 1.2rem;
+    letter-spacing: 0.3px;
+    color: var(--color-light-text);
+}
+
+.info__value {
+    margin: auto 0;
+    font-family: var(--font);
+    font-size: 1.4rem;
+    line-height: 1.2rem;
+    letter-spacing: 0.3px;
+    color: var(--color-dark);
+}
