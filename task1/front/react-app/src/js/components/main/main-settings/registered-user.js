@@ -1,14 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class RegisteredUser extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
-            <tr class="registered-user" height="50">
-                <td><span class="registered-user__login">$login</span></td>
-                <td id="status-buttons-$login" class="status-buttons" width="100%">
-                    <button class="status-button $userClass user" value="$value" name="user" onclick="changeStatus('$login', 'user');colorButtonByClick(event.target, event.target.value, event.target.name, '$login');">user</button>
-                    <button class="status-button $editorClass editor" value="$value" name="editor" onclick="changeStatus('$login', 'editor');colorButtonByClick(event.target, event.target.value, event.target.name, '$login');">editor</button>
-                    <button class="status-button $adminClass admin" value="$value" name="admin" onclick="changeStatus('$login', 'admin');colorButtonByClick(event.target, event.target.value, event.target.name, '$login');">admin</button>
+            <tr className="registered-user" height="50">
+                <td><span className="registered-user__login">{this.props.login}</span></td>
+                <td id="status-buttons-$login" className="status-buttons" width="100%">
+                    <button className="status-button $userClass user" value={this.props.status} name="user">user</button>
+                    <button className="status-button $editorClass editor" value={this.props.status} name="editor">editor</button>
+                    <button className="status-button $adminClass admin" value={this.props.status} name="admin">admin</button>
                 </td>
             </tr>
         )
