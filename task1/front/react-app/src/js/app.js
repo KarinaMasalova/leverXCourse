@@ -21,7 +21,7 @@ class App extends Component {
                     <Route exact path="/" component={Main}/>
                     <Route path="/register" component={MainRegister}/>
                     <Route path="/authorize" component={MainAuth}/>
-                    <Route path="/full-info-card" component={FullInfoCard}/>
+                    <Route path="/full-info-card/:id" component={FullInfoCard}/>
                     <Route path="/settings" component={MainSettings}/>
                 </Switch>
                 <Footer/>

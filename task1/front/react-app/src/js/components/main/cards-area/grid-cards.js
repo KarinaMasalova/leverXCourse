@@ -16,6 +16,7 @@ export default class GridCards extends Component {
                         ruName={card.ruName}
                         department={card.department}
                         room={card.room}
+                        card={card}
                         key={ card.engName + Math.random() }
                     />)
                 )}

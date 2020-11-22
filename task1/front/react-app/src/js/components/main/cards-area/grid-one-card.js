@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import { Route } from 'react-router-dom';
+
 class GridOneCard extends Component {
     constructor(props) {
         super(props);
@@ -8,7 +8,7 @@ class GridOneCard extends Component {
     render() {
         return (
             <Route render={({ history}) => (
-                <div className="card" onClick={() => { history.push('/full-info-card') }}>
+                <div className="card" onClick={() => { history.push(`/full-info-card/${this.props.card.id}`) }}>
                     <div className="card__img">
                         <img src={this.props.photo} alt=""/>
                     </div>
