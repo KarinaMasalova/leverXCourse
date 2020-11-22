@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 
 export default class HeaderNavigation extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ export default class HeaderNavigation extends Component {
                         <a href="#" className="navigation__link">Leave Requests</a>
                     </li>
                     <li className="navigation__item" id="navigation__settings">
-                        <a href="changeStatus.html" className="navigation__link">Settings</a>
+                        <Link to="/settings" className="navigation__link">Settings</Link>
                     </li>
                 </ul>
             </nav>
