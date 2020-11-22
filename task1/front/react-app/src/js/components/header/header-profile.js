@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 export default class HeaderProfile extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
             <div className="user-profile">

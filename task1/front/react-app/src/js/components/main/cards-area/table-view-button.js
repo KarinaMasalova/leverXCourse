@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 export default class TableViewButton extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         let className = "ico ico__table-view";
         if (this.props.isActive) {

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 export default class GridOneCard extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
             <div className="card">

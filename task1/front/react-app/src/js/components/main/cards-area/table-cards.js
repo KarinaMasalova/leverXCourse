@@ -4,6 +4,9 @@ import TableHead from './table-head';
 import TableOneCard from './table-one-card'
 
 export default class TableCards extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
             <table className="cards-table" cellPadding="15%">

@@ -1,5 +1,3 @@
-import saveInputValue from './saveInputValue';
-
 const baseUrl = 'http://localhost:5000';
 const oneEmployeeRequestByIdURL = (id) => `${baseUrl}/${id}`;
 const filteredEmployeesRequestURL = (inputValue) => `${baseUrl}/filter?inputValue=${inputValue}`;
@@ -59,9 +57,8 @@ const fetchAllEmployees = () => {
     return fetchGetRequest(baseUrl);
 }
 
-const fetchFilteredEmployees = () => {
-    let inputValue = saveInputValue();
-    return  fetchGetRequest(filteredEmployeesRequestURL(inputValue));    
+const fetchFilteredEmployees = (filter) => {
+    return  fetchGetRequest(filteredEmployeesRequestURL(filter));    
 };
 
 const fetchRegisteredUsersLogin = () => {

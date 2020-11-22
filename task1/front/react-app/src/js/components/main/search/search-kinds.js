@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 export default class SearchKinds extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
             <div className="search__kinds">

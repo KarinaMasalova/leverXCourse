@@ -5,6 +5,9 @@ import HeaderNavigation from './header-navigation';
 import HeaderProfile from './header-profile';
 
 export default class Header extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
             <header className="header">
