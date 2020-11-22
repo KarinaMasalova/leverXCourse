@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import RegisteredUser from './registered-user';
-import { fetchRegisteredUsersLogin } from '../../../functions/repository';
+import { fetchRegisteredUsersLogin, fetchStatus } from '../../../functions/repository';
 
 export default class ChangeStatusTable extends Component {
     constructor(props) {
@@ -12,6 +12,20 @@ export default class ChangeStatusTable extends Component {
     }
 
     componentDidMount() {
+        this.loadRegisteredUsers();
+    }
+
+    updateUserStatus(login, status) {
+        const body = {
+            login: login,
+            status: status
+        }
+        fetchStatus(body)
+            .then(() => this.loadRegisteredUsers())
+            .catch(err => console.log(err));
+    }
+
+    loadRegisteredUsers() {
         fetchRegisteredUsersLogin()
             .then((data) => {
                 this.setState({registeredUsers: data.users});
@@ -31,7 +45,9 @@ export default class ChangeStatusTable extends Component {
                 <tbody id="status-table-tbody">
                     { this.state.registeredUsers.map((user) => (
                         <RegisteredUser
+                            onButtonClicked={(status) => this.updateUserStatus(user.login, status)}
                             login={user.login}
+                            status={user.status}
                             key={ user.login + Math.random() }
                         />)
                     )}
