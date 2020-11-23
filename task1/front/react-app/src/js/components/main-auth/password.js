@@ -1,18 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Password extends Component {
-    render() {
-        return (
-            <div className="password">
-                <label htmlFor="password">Password</label>
-                <input
-                    id="authorization-password"
-                    type="password"
-                    placeholder="Enter password"
-                    name="password" required
-                    // onChange={this.props.onChange}
-                />
-            </div>
-        )
-    }
+export default function Password(props) {
+    return (
+        <div className="password">
+            <label htmlFor="password">Password</label>
+            <input
+                type="password"
+                placeholder="Enter password"
+                name="password" required
+                ref={props.refPasswordInputValue}
+            />
+        </div>
+    )
 }
