@@ -1,32 +1,25 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import SearchInput from './search-input';
 import SearchButton from './search-button';
 
-export default class SearchContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { inputValue: '' };
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+export default function SearchContainer(props) {
+    const [state, setState] = useState({ inputValue: '' });
+
+    const handleChange = (event) => {
+        setState({inputValue: event.target.value});
     }
 
-    handleChange(event) {
-        this.setState({inputValue: event.target.value});
-    }
-
-    handleSubmit(event) {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        this.props.onSearchContainerSubmit(this.state.inputValue.toLowerCase());
+        props.onSearchContainerSubmit(state.inputValue.toLowerCase());
     }
 
-    render() {
-        return (
-            <form className="search__container" method="GET" action="#" onSubmit={this.handleSubmit}>
-                <span className="search__icon"></span>
-                <SearchInput value={this.state.inputValue} onChange={this.handleChange}/>
-                <SearchButton/>
-            </form>
-        );
-    }
+    return (
+        <form className="search__container" method="GET" action="#" onSubmit={handleSubmit}>
+            <span className="search__icon"></span>
+            <SearchInput value={state.inputValue} onChange={handleChange}/>
+            <SearchButton/>
+        </form>
+    );
 }

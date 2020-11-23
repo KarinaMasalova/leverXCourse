@@ -1,20 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class SearchInput extends Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        return (
-            <input 
-                className="search__input"
-                type="text"
-                placeholder="Search..."
-                autoComplete="off"
-                autoFocus
-                value={this.props.value}
-                onChange={this.props.onChange}
-            />
-        );
-    }
+export default function SearchInput(props) {
+    return (
+        <input 
+            className="search__input"
+            type="text"
+            placeholder="Search..."
+            autoComplete="off"
+            autoFocus
+            value={props.value}
+            onChange={props.onChange}
+        />
+    );
 }
