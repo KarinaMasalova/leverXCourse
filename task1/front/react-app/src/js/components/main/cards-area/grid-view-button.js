@@ -1,14 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class GridViewButton extends Component {
-    constructor(props) {
-        super(props);
+export default function GridViewButton(props) {
+    let className = "ico ico__grid-view";
+    if (props.isActive) {
+        className += ' ico__grid-view_active';
     }
-    render() {
-        let className = "ico ico__grid-view";
-        if (this.props.isActive) {
-            className += ' ico__grid-view_active';
-        }
-        return (<span className={className} onClick={this.props.onClick}></span>);
-    }
+    return <span className={className} onClick={props.onClick}></span>;
 }

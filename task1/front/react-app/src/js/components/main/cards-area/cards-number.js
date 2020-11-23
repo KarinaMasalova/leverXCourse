@@ -1,10 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class CardsNumber extends Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        return (<p className="cards-number">{this.props.text}</p>);
-    }
+export default function CardsNumber(props) {
+    return <p className="cards-number">{props.text}</p>;
 }

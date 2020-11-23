@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Switch, Route } from 'react-router-dom';
 
 import Header from './components/header/header';
@@ -12,22 +12,18 @@ import MainSettings from './components/main/main-settings/main-settings';
 
 import '../styles/style.scss';
 
-class App extends Component {
-    render() {
-        return (
-            <div>
-                <Header/>
-                <Switch>
-                    <Route exact path="/" component={Main}/>
-                    <Route path="/register" component={MainRegister}/>
-                    <Route path="/authorize" component={MainAuth}/>
-                    <Route path="/full-info-card/:id" component={FullInfoCard}/>
-                    <Route path="/settings" component={MainSettings}/>
-                </Switch>
-                <Footer/>
-            </div>
-        );
-    }
+export default function App() {
+    return (
+        <div>
+            <Header/>
+            <Switch>
+                <Route exact path="/" component={Main}/>
+                <Route path="/register" component={MainRegister}/>
+                <Route path="/authorize" component={MainAuth}/>
+                <Route path="/full-info-card/:id" component={FullInfoCard}/>
+                <Route path="/settings" component={MainSettings}/>
+            </Switch>
+            <Footer/>
+        </div>
+    );
 }
-
-export default App;

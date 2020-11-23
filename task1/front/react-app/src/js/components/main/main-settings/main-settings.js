@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import ChangeStatusTable from './change-status-table';
 
-export default class MainSettings extends Component {
-    render() {
-        return (
-            <main className="main">
-                <div className="wrapper">
-                    <ChangeStatusTable/>
-                </div>
-            </main>
-        )
-    }
+export default function MainSettings() {
+    return (
+        <main className="main">
+            <div className="wrapper">
+                <ChangeStatusTable/>
+            </div>
+        </main>
+    );
 }
