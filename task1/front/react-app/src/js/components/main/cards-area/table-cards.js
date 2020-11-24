@@ -9,9 +9,7 @@ export default function TableCards(props) {
     const [state, setState] = useState({ clickCount: 0 });
 
     const sortCards = (cards) => {
-        console.log(cards);
         let cardsCopy = [...cards];
-        console.log(cardsCopy);
         if (state.clickCount % 3 === 1) {
             cardsCopy.sort(ascSortCards);
         } else if (state.clickCount % 3 === 2) {

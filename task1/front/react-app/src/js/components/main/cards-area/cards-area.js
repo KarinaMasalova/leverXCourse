@@ -9,7 +9,7 @@ import TableCards from "./table-cards";
 import { fetchAllEmployees, fetchFilteredEmployees } from '../../../functions/repository';
 
 export default function CardsArea(props) {
-    let [state, setState] = useState({
+    const [state, setState] = useState({
         allCards: [],
         currentCards: [],
         isGrid: true,
@@ -23,7 +23,7 @@ export default function CardsArea(props) {
                 setState({ ...state, allCards: data.cards, employeesAmount: txt, currentCards: data.cards });
             })
             .catch(err => console.log(err));
-    }, []);
+        }, []);
 
     useEffect(() => {
         fetchFilteredEmployees(props.filter)
@@ -48,11 +48,11 @@ export default function CardsArea(props) {
             <div className="cards-area__info">
                 <CardsNumber text={state.employeesAmount} />
                 <GridViewButton
-                    onClick={() => setState({ isGrid: true })}
+                    onClick={() => setState({ ...state, isGrid: true })}
                     isActive={state.isGrid}
                 />
                 <TableViewButton
-                    onClick={() => setState({ isGrid: false })}
+                    onClick={() => setState({ ...state, isGrid: false })}
                     isActive={!state.isGrid}
                 />
             </div>
