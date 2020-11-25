@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function SearchInput(props) {
     return (
@@ -8,7 +8,6 @@ export default function SearchInput(props) {
             placeholder="Search..."
             autoComplete="off"
             autoFocus
-            value={props.value}
             onChange={props.onChange}
         />
     );

@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from 'react-redux'
 
 import Search from './search/search';
 import CardsArea from './cards-area/cards-area';
 
 export default function Main() {
-    const [state, setState] = useState({ searchInputValue: '' });
+    const getInputValue = (state) => state.searchInputValueReducer.inputValue;
+    const inputValue = useSelector(getInputValue);
     
     return (
         <main className="main">
             <div className="wrapper main__wrapper">
-                <Search
-                    onSearchSubmit={(text) => setState({ searchInputValue: text })}
-                />
+                <Search/>
                 <CardsArea
-                    filter={state.searchInputValue}
+                    filter={inputValue}
                 />
             </div>
         </main>
