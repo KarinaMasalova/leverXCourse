@@ -6,9 +6,7 @@ export default function employeesAmountReducer(state = initialState, action) {
     switch(action.type) {
         case "SET_EMPLOYEES_AMOUNT":
             return {
-                employeesAmount: (action.payload > 1)
-                    ? `${action.payload} employees displayed`
-                    : `${action.payload} employee displayed`
+                employeesAmount: action.payload
             }
         default:
             return state;
