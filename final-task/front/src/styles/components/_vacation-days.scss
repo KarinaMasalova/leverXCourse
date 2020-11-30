@@ -1,0 +1,28 @@
+.vacation-days-container {
+    box-shadow: $shadow;
+    margin-bottom: 10px;
+}
+
+.vacation-days {
+    padding: 31px 30px 14.17px;
+    background-color: $color-light;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.vacation-days__title {
+    margin: 0;
+    padding-bottom: 11px;
+    color: $color-dark;
+    @include font($size: 1.8rem, $height: 2.4rem, $weight: 600);
+}
+
+.vacation-days__available {
+    display: flex;
+    justify-content: space-between;
+}
+
+.available__text,
+.available__days-amount {
+    color: $color-dark;
+    @include font($size: 1.3rem, $height: 1.8rem, $weight: 400);
+}

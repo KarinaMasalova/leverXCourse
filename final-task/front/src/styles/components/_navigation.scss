@@ -1,0 +1,26 @@
+.navigation {
+    display: flex;
+    margin: 0;
+    line-height: 24px;
+    > * {
+        list-style: none;
+        margin-right: 48px;
+    }
+}
+
+.navigation__link {
+    padding-bottom: 21px;
+    text-decoration: none;
+    color: $color-navlink-inactive;
+    @include font($size: 1.3rem, $height: 2.0rem, $weight: 600);
+    &:hover  {
+        opacity: 0.8;
+        color: $color-light;
+        @extend %transition;
+    }
+    &.active {
+        color: $color-light;
+        border-bottom: 4px solid $color-button;
+        border-radius: 1px;
+    }
+}

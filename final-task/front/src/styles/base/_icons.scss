@@ -1,0 +1,15 @@
+.ico {
+    cursor: pointer;
+}
+
+.notification__ico {
+    margin: 4px;
+    @include ico-settings($width: 24px, $height: 24px);
+    @include background($image: '../img/icons/notification.svg');
+}
+
+.power-off__ico {
+    margin: 5px;
+    @include ico-settings($width: 24px, $height: 24px);
+    @include background($image: '../img/icons/power-off.svg');
+}

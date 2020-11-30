@@ -1,0 +1,19 @@
+.more-details {
+    position: relative;
+    padding: 5.35px 0 6.65px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px #f1f2f7 solid;
+    background-color: $color-bg-light;
+    border-radius: 0px 0px 5px 5px;
+    &:hover {
+        @extend %transition;
+        cursor: pointer;
+        filter: brightness(0.95);
+    }
+}
+
+.more-details__text {
+    color: $color-additional-info;
+    @include font($size: 1.0rem, $height: 1.4rem, $weight: 400);
+}

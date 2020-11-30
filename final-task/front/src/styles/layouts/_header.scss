@@ -1,0 +1,11 @@
+
+.header {
+    background-color: $color-primary;
+    filter: drop-shadow($color-header-shadow);
+    border-bottom: 4px solid $color-primary-dark;
+}
+
+.header__navigation {
+    width: 49%;
+    padding-top: 24px;
+}

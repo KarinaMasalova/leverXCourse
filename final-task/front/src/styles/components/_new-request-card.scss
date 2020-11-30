@@ -1,0 +1,103 @@
+.new-request-card {
+    background-color: $color-light;
+    box-shadow: $shadow;
+    border-radius: 5px;
+}
+
+.new-request-card__img  {
+    display: inline-block;
+    width: 100%;
+    height: 170px;
+    border-radius: 5px 5px 0 0;
+    &_vacation {
+        @include background($image: '../img/backgrounds/vacation-new.png');
+    }
+    &_sick-leave {
+        @include background($image: '../img/backgrounds/sick-leave-new.png');
+    }
+    &_own-expense {
+        @include background($image: '../img/backgrounds/own-expense-new.png');
+    }
+}
+
+.new-request {
+    padding: 29px 80px 30px 30px;
+}
+
+.new-request__title {
+    margin: 0;
+    padding-bottom: 12px; 
+    color: $color-dark;
+    @include font($size: 1.8rem, $height: 2.4rem, $weight: 600);
+}
+
+/* form */
+
+.new-request__period {
+    display: flex;
+    padding: 13px 0 18px;
+}
+
+.date,
+.days-amount {
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+    > input {
+        margin-top: 5px;
+        border: $input-border;
+        border-radius: 5px;
+        color: $color-dark;
+        @include font($size: 1.3rem, $height: 1.8rem, $weight:400, $spacing: -0.6%);
+    }
+    > label {
+        color: $color-dark;
+        @include font($size: 1.3rem, $height: 1.8rem, $weight: 600);
+        > * {
+            padding-left: 2px;
+            color: $color-additional-info;
+            @include font($size: 1.3rem, $height: 1.8rem, $weight: 400);
+        }
+    }
+}
+
+.date input {
+    max-width: 149px;
+    padding: 10px 11px 10px 10px;
+}
+
+.days-amount input {
+    max-width: 43px;
+    padding: 10px 6px 12px 6px;
+}
+
+
+.new-request__comment {
+    margin: 0;
+    color: $color-dark;
+    @include font($size: 1.3rem, $height: 1.8rem, $weight: 600);
+}
+
+.new-request__textarea {
+    resize: none;
+    margin: 5px 0 20px;
+    width: 100%;
+    height: 80px;
+    border: $input-border;
+    border-radius: 5px;
+}
+
+.new-request-faq {
+    margin: 9px 0;
+    float: right;
+    color: $color-dark;
+    @include font($size: 1.3rem, $height: 1.8rem, $weight: 400, $spacing: -0.31px);
+    > a {
+        padding-left: 4px;
+        text-decoration: none;
+        color: $color-button;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

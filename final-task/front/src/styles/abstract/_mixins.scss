@@ -1,0 +1,20 @@
+@mixin font($family: 'Open Sans', $size: inherit, $weight: normal, $height: auto, $style: normal, $spacing: 0) {
+    font-family: $family, 'Verdana', sans-serif;
+    font-size: $size;
+    font-weight: $weight;
+    font-style: $style;
+    letter-spacing: $spacing;
+}
+
+@mixin background($image, $size: contain, $repeat: no-repeat, $position: center) {
+    background-image: url($image);
+    background-size: $size;
+    background-repeat: $repeat;
+    background-position: $position;
+}
+
+@mixin ico-settings($display: inline-block, $width: 20px, $height: 20px, ) {
+    display: $display;
+    width: $width;
+    height: $height;
+}
