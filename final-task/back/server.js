@@ -39,7 +39,7 @@ app.get('/:id', (req, res) => {
 });
 
 // add request to json
-app.post('/request', (req, res) => {
+app.post('/add', (req, res) => {
     addRequestToJson(req.body);
     res.send(req.body);
 });
