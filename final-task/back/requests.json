@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "type": "Vacation",
+        "startDate": "16 10 2019",
+        "endDate": "20 10 2019",
+        "creationDate": "16 Oct 2019",
+        "approve": "Approved",
+        "year": "2019"
+    },
+    {
+        "id": 2,
+        "type": "Vacation",
+        "startDate": "16 09 2019",
+        "endDate": "20 09 2019",
+        "creationDate": "16 Sep 2019",
+        "approve": "Approved",
+        "year": "2019"
+    },
+    {
+        "id": 3,
+        "type": "Vacation",
+        "startDate": "17 09 2019",
+        "endDate": "22 09 2019",
+        "creationDate": "17 Sep 2019",
+        "approve": "Approved",
+        "year": "2019"
+    },
+    {
+        "id": 4,
+        "type": "Sick leave",
+        "startDate": "16 09 2018",
+        "endDate": "20 09 2018",
+        "creationDate": "1 Sep 2018",
+        "approve": "Approved and registered",
+        "year": "2018"
+    },
+    {
+        "id": 5,
+        "type": "Own expense leave",
+        "startDate": "16 12 2018",
+        "endDate": "20 12 2018",
+        "creationDate": "16 Dec 2018",
+        "approve": "Approved and registered",
+        "year": "2018"
+    },
+    {
+        "id": 6,
+        "type": "Own expense leave",
+        "startDate": "11 10 2018",
+        "endDate": "12 10 2018",
+        "creationDate": "11 Oct 2018",
+        "approve": "Approved and registered",
+        "year": "2018"
+    }
+]
