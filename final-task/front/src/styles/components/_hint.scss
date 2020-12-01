@@ -1,0 +1,30 @@
+.hint {
+    position: absolute;
+    left: 22%;
+    top: 96%;
+    padding: 21px 30px 29px;
+    background-color: $color-light;
+    box-shadow: $shadow;
+    max-width: 340px;
+    border-radius: 5px;
+    > * {
+        margin: 0;
+    }
+}
+
+.hint-icon {
+    position: relative;
+    margin-left: 5px;
+    vertical-align: bottom;
+    @include ico-settings($width: 16px, $height: 16px);
+    @include background($image: '../img/icons/question.svg');
+}
+
+.hint__text {
+    color: $color-dark;
+    @include font($size: 1.3rem, $height: 2.0rem, $weight: 400);
+    &_bolder {
+        padding: 10px 0;
+        @include font($size: 1.3rem, $height: 2.0rem, $weight: 600);
+    }
+}

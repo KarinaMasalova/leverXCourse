@@ -14,13 +14,6 @@
     @include background($image: '../img/icons/power-off.svg');
 }
 
-.hint-icon {
-    margin-left: 5px;
-    vertical-align: bottom;
-    @include ico-settings($width: 16px, $height: 16px);
-    @include background($image: '../img/icons/question.svg');
-}
-
 .copy-icon {
     margin-left: 10px;
     vertical-align: middle;
