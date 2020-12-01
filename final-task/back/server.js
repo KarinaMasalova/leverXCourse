@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require("fs");
 const bodyParser = require('body-parser');
+const cors = require("cors");
 
 let requests;
 
@@ -8,6 +9,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(cors());
 
 fs.readFile(__dirname + "/requests.json", (error, data) => {
     if(error) {
