@@ -13,9 +13,9 @@
     &_sick-leave {
         @include background($image: '../img/icons/sick-leave.png');
     }
-    // &_own-expense {
-    //     @include background($image: '../img/backgrounds/own-expense-new.png');
-    // }
+    &_own-expense {
+        @include background($image: '../img/icons/own-expense.png');
+    }
 }
 
 .request-card__info {
