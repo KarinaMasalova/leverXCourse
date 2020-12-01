@@ -43,13 +43,6 @@
     display: flex;
     flex-direction: column;
     padding-right: 10px;
-    > input {
-        margin-top: 5px;
-        border: $input-border;
-        border-radius: 5px;
-        color: $color-dark;
-        @include font($size: 1.3rem, $height: 1.8rem, $weight:400, $spacing: -0.6%);
-    }
     > label {
         color: $color-dark;
         @include font($size: 1.3rem, $height: 1.8rem, $weight: 600);
@@ -61,16 +54,23 @@
     }
 }
 
-.date input {
-    max-width: 149px;
-    padding: 10px 11px 10px 10px;
-}
-
+.datepicker,
 .days-amount input {
-    max-width: 43px;
-    padding: 10px 6px 12px 6px;
+    padding: 10px 13px 10px 10px;
+    margin-top: 5px;
+    border: $input-border;
+    border-radius: 5px;
+    color: $color-dark;
+    @include font($size: 1.3rem, $height: 1.8rem, $weight:400, $spacing: -0.6%);
 }
 
+.datepicker {
+    max-width: 140px;
+}
+
+.days-amount > input {
+    max-width: 60px;
+}
 
 .new-request__comment {
     margin: 0;

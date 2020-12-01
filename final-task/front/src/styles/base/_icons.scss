@@ -13,3 +13,37 @@
     @include ico-settings($width: 24px, $height: 24px);
     @include background($image: '../img/icons/power-off.svg');
 }
+
+.hint-icon {
+    margin-left: 5px;
+    vertical-align: bottom;
+    @include ico-settings($width: 16px, $height: 16px);
+    @include background($image: '../img/icons/question.svg');
+}
+
+.copy-icon {
+    margin-left: 10px;
+    vertical-align: middle;
+    @include ico-settings($width: 24px, $height: 24px);
+    @include background($image: '../img/icons/copy.svg');
+}
+
+.people-approvers__icon {
+    float: left;
+    @include ico-settings($width: 32px, $height: 32px);
+    &_approved {
+        @include background($image: '../img/icons/approved.png');
+    }
+    &_will-mcconnel {
+        @include background($image: '../img/users/current-approver.png');
+    }
+    &_john-smith {
+        @include background($image: '../img/users/next-approver-1.png');
+    }
+    &_mike-smith {
+        @include background($image: '../img/users/next-approver-2.png');
+    }
+    &_katrin-brown {
+        @include background($image: '../img/users/documents-registrator.png');
+    }
+}

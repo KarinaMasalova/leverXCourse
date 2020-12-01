@@ -1,3 +1,5 @@
+@import 'react-datepicker/dist/react-datepicker.css';
+
 // Abstract
 @import "abstract/constants";
 @import "abstract/mixins";
@@ -20,6 +22,7 @@
 @import "components/drop-down-icon";
 @import "components/new-request-card";
 @import "components/one-request-card";
+@import "components/pop-up";
 
 // Layouts
 @import "layouts/wrapper";

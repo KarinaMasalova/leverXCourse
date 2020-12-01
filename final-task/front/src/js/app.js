@@ -4,6 +4,7 @@ import React from "react";
 import Header from './components/header/header';
 import Main from './components/main/main';
 import Footer from './components/footer/footer';
+import ConfirmationPopup from './components/main/pop-up/confirmation/confirmation';
 
 import '../styles/style.scss';
 
@@ -16,6 +17,7 @@ export default function App() {
                 <Route exact path="/" component={Main}/>
             </Switch> */}
             <Footer/>
+            <ConfirmationPopup/>
         </div>
     );
 }

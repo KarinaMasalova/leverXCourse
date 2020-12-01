@@ -1,6 +1,5 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, options) => {
     const debug = options.mode === 'development';
@@ -33,10 +32,6 @@ module.exports = (env, options) => {
                 {
                     test: /\.s[ac]ss$/i,
                     use: ['style-loader', 'css-loader', 'sass-loader'],
-                },
-                {
-                    test: /\.css$/i,
-                    use: [MiniCssExtractPlugin.loader, 'css-loader'],
                 },
                 {
                     test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,

@@ -1,12 +1,13 @@
 import React from 'react';
 
-export default function FormDaysAmount() {
+import LabelInput from './label-input';
+import DisabledInput from './disabled-input';
+
+export default function FormDaysAmount(props) {
     return (
         <div className="days-amount">
-            <label htmlFor="amount">Day(s)
-                <span></span>
-            </label>
-            <input type="text" disabled value="147"></input>
+            <LabelInput text={'Day(s)'} className={props.className}/>
+            <DisabledInput value={props.value}/>
         </div>
     );
 }
