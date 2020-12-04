@@ -21,7 +21,7 @@ export default function NewRequestCard() {
             type: type,
             startDate: startDate,
             endDate: endDate,
-            durationInDays: duration
+            durationInDays: +duration
         };
         fetchAddingRequest(body)
             .then(data => {

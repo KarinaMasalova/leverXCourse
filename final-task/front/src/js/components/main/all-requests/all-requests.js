@@ -5,13 +5,23 @@ import OneRequestCard from './one-request-card';
 import YearIdentifier from './year-identifier';
 import { fetchAllRequestCards } from '../../../repository/repository';
 import setAllRequestCards from '../../../store/actionCreators/setAllRequestCards';
+import setAvailableDays from "../../../store/actionCreators/setAvailableDays";
 
 export default function AllRequests() {
     const dispatch = useDispatch();
 
     useEffect(() => {
         fetchAllRequestCards()
-            .then(data => dispatch(setAllRequestCards(data)))
+            .then(data => {
+                dispatch(setAllRequestCards(data));
+                const reservedDays = data.reduce((acc, current) => {
+                    if (current.type !== 'Sick leave') {
+                        acc += current.durationInDays;
+                    }
+                    return acc;
+                }, 0);
+                dispatch(setAvailableDays(reservedDays));
+            })
             .catch(err => console.log(err));
     }, []);
 

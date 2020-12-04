@@ -73,18 +73,17 @@
 		"type": "Sick leave",
 		"startDate": "29 Dec 2020",
 		"endDate": "29 Dec 2020",
-		"durationInDays": "1",
+		"durationInDays": 1,
 		"id": 8,
 		"creationDate": "04 Dec 2020",
 		"approve": "Approved",
 		"year": 2020
 	},
 	{
-		"type": "Sick leave",
 		"startDate": "04 Dec 2020",
-		"endDate": "11 Dec 2020",
-		"durationInDays": "7",
-		"id": 9,
+		"endDate": "23 Dec 2020",
+		"durationInDays": 19,
+		"id": 10,
 		"creationDate": "04 Dec 2020",
 		"approve": "Approved",
 		"year": 2020
