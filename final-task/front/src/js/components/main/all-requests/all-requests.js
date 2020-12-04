@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import OneRequestCard from './one-request-card';
@@ -17,7 +17,6 @@ export default function AllRequests() {
 
     function groupBy(key, arr) {
         return arr.reduce((objWithGroups, request) => {
-            console.log(objWithGroups);
             const year = request[key];
             if (year in objWithGroups) {
                 return {
@@ -42,7 +41,7 @@ export default function AllRequests() {
                 <p className="all-requests__title">My Leave Requests</p>
                 { Object.entries(groupedAllRequests).map(([year, requests]) => {
                     return (
-                        <>
+                        <Fragment key={year}>
                             <YearIdentifier year={year}/>
                             { requests.map((request) => (
                                 <OneRequestCard
@@ -58,10 +57,10 @@ export default function AllRequests() {
                                     durationInDays={request.durationInDays}
                                     creationDate={request.creationDate}
                                     approve={request.approve}
-                                    key={request.type + Math.random()}
+                                    key={request.id}
                                 />))
                             }
-                        </>
+                        </Fragment>
                     )
                 })}
             </div>
