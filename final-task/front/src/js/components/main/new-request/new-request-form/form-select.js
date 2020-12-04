@@ -1,7 +1,12 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Select from 'react-select';
 
+import setSelectedValue from '../../../../store/actionCreators/setSelectedValue';
+
 export default function FormSelect(props) {
+    const dispatch = useDispatch();
+
     const options = [
         { value: 'vacation', label: 'Vacation' },
         { value: 'sick-leave', label: 'Sick leave' },
@@ -37,13 +42,22 @@ export default function FormSelect(props) {
             fontSize: '1.3rem',
             fontFamily: 'Open Sans',
         })
-      }
+    }
+
+    const handleChange = (event) => dispatch(setSelectedValue(event.label));
+
+    const getSelectedValue = (state) => state.selectedValueReducer.selectedValue;
+    const value = useSelector(getSelectedValue);
+
+    const selectedValue = options.filter((option) => option.label === value);
 
     return (
-        <Select 
+        <Select
             options={options}
             styles={customStyles}
             ref={props.refSelectValue}
+            value={selectedValue}
+            onChange={handleChange}
         />
     );
 }

@@ -45,8 +45,8 @@ app.get('/:id', (req, res) => {
 
 // add request to json
 app.post('/add', (req, res) => {
-    const startDateStrToDate = new Date(cardRequest.startDate);
     const cardRequest = req.body;
+    const startDateStrToDate = new Date(cardRequest.startDate);
     cardRequest.id = requests.reduce((acc, request) => Math.max(acc, request.id), 0) + 1;
     cardRequest.creationDate = dateFormat(now, "creationDate");
     cardRequest.approve = "Approved";
