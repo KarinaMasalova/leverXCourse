@@ -35,7 +35,7 @@ const fetchAllRequestCards = () => {
     return fetchGetRequest(baseUrl);
 }
 
-const fetchAddingRequest = () => {
+const fetchAddingRequest = (body) => {
     return fetchPostRequest(addingRequestUrl, body);
 }
 

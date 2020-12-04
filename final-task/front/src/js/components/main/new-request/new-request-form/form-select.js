@@ -1,7 +1,7 @@
 import React from "react";
 import Select from 'react-select';
 
-export default function FormSelect() {
+export default function FormSelect(props) {
     const options = [
         { value: 'vacation', label: 'Vacation' },
         { value: 'sick-leave', label: 'Sick leave' },
@@ -20,7 +20,13 @@ export default function FormSelect() {
         singleValue: (provided, state) => {
             const opacity = state.isDisabled ? 0.5 : 1;
             const transition = 'opacity 300ms';
-            return { ...provided, opacity, transition };
+            return {
+                ...provided,
+                opacity,
+                transition,
+                fontFamily: 'Open Sans',
+                fontSize: '1.3rem'
+            };
         },
         menu: (provided) => ({
             ...provided,
@@ -37,6 +43,7 @@ export default function FormSelect() {
         <Select 
             options={options}
             styles={customStyles}
+            ref={props.refSelectValue}
         />
     );
 }

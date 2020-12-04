@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
 import LabelInput from './label-input';
 
 export default function FormDate(props) {
@@ -16,8 +15,8 @@ export default function FormDate(props) {
                 showYearDropdown
                 minDate={props.minDate}
                 className={props.className}
+                ref={props.refDateValue}
             />
-            {/* <input type="date"></input> */}
         </div>
     )
 }

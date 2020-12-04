@@ -19,10 +19,11 @@ export default function FormDaysAmount(props) {
                 onMouseOver={handleOnMouseOver}
                 onMouseLeave={handleOnMouseLeave}
             />
-            <DisabledInput value={props.value}/>
-            <Hint
-                hintStyle={hintStyle}
+            <DisabledInput
+                value={props.value}
+                refDurationValue = {props.refDurationValue}
             />
+            <Hint hintStyle={hintStyle}/>
         </div>
     );
 }
