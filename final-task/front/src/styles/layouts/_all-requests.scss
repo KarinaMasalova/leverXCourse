@@ -10,7 +10,7 @@
         width: 6px;
     }
     &::-webkit-scrollbar-track {
-        background-color: $color-button;
+        background-color: $color-bg-light;
         border-radius: 5px;
     }
     &::-webkit-scrollbar-thumb {
@@ -23,7 +23,18 @@
 }
 
 .all-requests__title {
+    margin: 0;
     padding: 21px 0 20px 24px;
     color: $color-dark;
     @include font($size: 1.8rem, $height: 2.4rem, $weight: 600);
+}
+
+.year {
+    background-color: $color-button;
+    padding: 2px 0 3px 30px;
+}
+
+.year__number {
+    color: $color-light;
+    @include font($size: 1.2rem, $height: 1.7rem, $weight: 600, $spacing: -0.29px);
 }

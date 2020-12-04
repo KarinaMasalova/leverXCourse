@@ -1,30 +1,68 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-// import EmptyRequests from './empty-requests';
 import OneRequestCard from './one-request-card';
+import YearIdentifier from './year-identifier';
+import { fetchAllRequestCards } from '../../../repository/repository';
+import setAllRequestCards from '../../../store/actionCreators/setAllRequestCards';
 
-export default function AllRequests(props) {
+export default function AllRequests() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        fetchAllRequestCards()
+            .then(data => dispatch(setAllRequestCards(data)))
+            .catch(err => console.log(err));
+    }, []);
+
+    function groupBy(key, arr) {
+        return arr.reduce((objWithGroups, request) => {
+            console.log(objWithGroups);
+            const year = request[key];
+            if (year in objWithGroups) {
+                return {
+                    ...objWithGroups,
+                    [year]: objWithGroups[year].concat(request)
+                }
+            }
+            return {
+                ...objWithGroups,
+                [year]: [request]
+            }
+        }, {});
+    }
+
+    const getAllRequestCards = (state) => state.allRequestCardsReducer.allRequests;
+    const allRequests = useSelector(getAllRequestCards);
+    const groupedAllRequests = groupBy('year', allRequests);    
+
     return (
         <div className="all-requests-container">
             <div className="all-requests">
                 <p className="all-requests__title">My Leave Requests</p>
-                {/* <EmptyRequests/> */}
-                { props.allRequests.map((request) => (
-                    <OneRequestCard
-                        className={(request.type === 'Vacation')
-                            ? 'request-card__icon request-card__icon_vacation'
-                            : (request.type === 'Sick leave')
-                                ? 'request-card__icon request-card__icon_sick-leave'
-                                : 'request-card__icon request-card__icon_own-expense'
-                        }
-                        type={request.type}
-                        startDate={request.startDate}
-                        endDate={request.endDate}
-                        creationDate={request.creationDate}
-                        approve={request.approve}
-                        key={request.type + Math.random()}
-                    />)
-                )}
+                { Object.entries(groupedAllRequests).map(([year, requests]) => {
+                    return (
+                        <>
+                            <YearIdentifier year={year}/>
+                            { requests.map((request) => (
+                                <OneRequestCard
+                                className={(request.type === 'Vacation')
+                                    ? 'request-card__icon request-card__icon_vacation'
+                                    : (request.type === 'Sick leave')
+                                        ? 'request-card__icon request-card__icon_sick-leave'
+                                        : 'request-card__icon request-card__icon_own-expense'
+                                }
+                                type={request.type}
+                                startDate={request.startDate}
+                                endDate={request.endDate}
+                                creationDate={request.creationDate}
+                                approve={request.approve}
+                                key={request.type + Math.random()}
+                            />))
+                            }
+                        </>
+                    )
+                })}
             </div>
         </div>
     );
