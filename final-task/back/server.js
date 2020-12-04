@@ -2,8 +2,11 @@ const express = require('express');
 const fs = require("fs");
 const bodyParser = require('body-parser');
 const cors = require("cors");
+var dateFormat = require("dateformat");
 
 let requests;
+let now = new Date();
+dateFormat.masks.creationDate = "dd mmm yyyy";
 
 const app = express();
 
@@ -42,8 +45,14 @@ app.get('/:id', (req, res) => {
 
 // add request to json
 app.post('/add', (req, res) => {
-    addRequestToJson(req.body);
-    res.send(req.body);
+    const startDateStrToDate = new Date(cardRequest.startDate);
+    const cardRequest = req.body;
+    cardRequest.id = requests.reduce((acc, request) => Math.max(acc, request.id), 0) + 1;
+    cardRequest.creationDate = dateFormat(now, "creationDate");
+    cardRequest.approve = "Approved";
+    cardRequest.year = startDateStrToDate.getFullYear();
+    addRequestToJson(cardRequest);
+    res.send(cardRequest);
 });
 
 // delete request from json
