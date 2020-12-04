@@ -61,16 +61,6 @@
 	},
 	{
 		"type": "Vacation",
-		"startDate": "14 Dec 2020",
-		"endDate": "24 Dec 2020",
-		"durationInDays": "11",
-		"id": 7,
-		"creationDate": "04 Dec 2020",
-		"approve": "Approved",
-		"year": 120
-	},
-	{
-		"type": "Vacation",
 		"startDate": "22 Dec 2020",
 		"endDate": "31 Dec 2020",
 		"durationInDays": "10",
