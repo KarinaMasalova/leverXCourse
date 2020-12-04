@@ -46,19 +46,20 @@ export default function AllRequests() {
                             <YearIdentifier year={year}/>
                             { requests.map((request) => (
                                 <OneRequestCard
-                                className={(request.type === 'Vacation')
-                                    ? 'request-card__icon request-card__icon_vacation'
-                                    : (request.type === 'Sick leave')
-                                        ? 'request-card__icon request-card__icon_sick-leave'
-                                        : 'request-card__icon request-card__icon_own-expense'
-                                }
-                                type={request.type}
-                                startDate={request.startDate}
-                                endDate={request.endDate}
-                                creationDate={request.creationDate}
-                                approve={request.approve}
-                                key={request.type + Math.random()}
-                            />))
+                                    className={(request.type === 'Vacation')
+                                        ? 'request-card__icon request-card__icon_vacation'
+                                        : (request.type === 'Sick leave')
+                                            ? 'request-card__icon request-card__icon_sick-leave'
+                                            : 'request-card__icon request-card__icon_own-expense'
+                                    }
+                                    type={request.type}
+                                    startDate={request.startDate}
+                                    endDate={request.endDate}
+                                    durationInDays={request.durationInDays}
+                                    creationDate={request.creationDate}
+                                    approve={request.approve}
+                                    key={request.type + Math.random()}
+                                />))
                             }
                         </>
                     )
