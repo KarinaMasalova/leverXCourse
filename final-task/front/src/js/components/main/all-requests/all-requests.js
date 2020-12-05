@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import OneRequestCard from './one-request-card';
 import YearIdentifier from './year-identifier';
+import RequestDetails from '../pop-up/request-details/request-details';
 import { fetchAllRequestCards } from '../../../repository/repository';
 import setAllRequestCards from '../../../store/actionCreators/setAllRequestCards';
 import setAvailableDays from "../../../store/actionCreators/setAvailableDays";
+import setRequestDetailsPopup from "../../../store/actionCreators/setRequestDetailsPopup";
 
 export default function AllRequests() {
     const dispatch = useDispatch();
@@ -43,7 +45,19 @@ export default function AllRequests() {
 
     const getAllRequestCards = (state) => state.allRequestCardsReducer.allRequests;
     const allRequests = useSelector(getAllRequestCards);
-    const groupedAllRequests = groupBy('year', allRequests);    
+    const groupedAllRequests = groupBy('year', allRequests);
+    
+    const getReqDetailsPopupState = (state) => state.requestDetailsPopupReducer.isRequestDetailsPopupShown;
+    const isReqDetailsPopupShown = useSelector(getReqDetailsPopupState);
+    const togglePopup = () => dispatch(setRequestDetailsPopup(isReqDetailsPopupShown));
+
+    const showPopup = () => {
+        if (isReqDetailsPopupShown){
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'scroll';
+        }
+    }
 
     return (
         <div className="all-requests-container">
@@ -68,8 +82,11 @@ export default function AllRequests() {
                                     creationDate={request.creationDate}
                                     approve={request.approve}
                                     key={request.id}
+                                    onClick={togglePopup}
                                 />))
                             }
+                            { isReqDetailsPopupShown ? <RequestDetails/> : null }
+                            { showPopup() }
                         </Fragment>
                     )
                 })}

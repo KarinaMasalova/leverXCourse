@@ -1,7 +1,12 @@
 .request-card {
+    background-color: $color-light;
     display: flex;
     padding: 13px 24px 18px 26px;
     border-bottom: 1px solid #f1f2f7;
+    &:hover {
+        cursor: pointer;
+        filter: brightness(0.95);
+    }
 }
 
 .request-card__icon  {

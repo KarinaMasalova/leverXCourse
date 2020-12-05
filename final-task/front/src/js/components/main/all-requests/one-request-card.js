@@ -2,7 +2,7 @@ import React from "react";
 
 export default function OneRequestCard(props) {
     return (
-        <div className="request-card">
+        <div className="request-card" onClick={props.onClick}>
             <div className={props.className}></div>
             <div className="request-card__info">
                 <p className="request-card__title">{props.type}: {props.startDate} - {props.endDate} ({props.durationInDays} days)</p>
