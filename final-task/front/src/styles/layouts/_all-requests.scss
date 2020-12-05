@@ -12,13 +12,12 @@
     &::-webkit-scrollbar-track {
         background-color: $color-bg-light;
         border-radius: 5px;
+        
     }
     &::-webkit-scrollbar-thumb {
         -webkit-border-radius: 5px;
         border-radius: 5px;
-        &:hover {
-            background-color: $color-primary-dark;
-        }
+        background-color: lightgray;
     }
 }
 
