@@ -8,6 +8,7 @@ import { fetchAllRequestCards } from '../../../repository/repository';
 import setAllRequestCards from '../../../store/actionCreators/setAllRequestCards';
 import setAvailableDays from "../../../store/actionCreators/setAvailableDays";
 import setRequestDetailsPopup from "../../../store/actionCreators/setRequestDetailsPopup";
+import setCurrentRequestCard from '../../../store/actionCreators/setCurrentRequestCard';
 
 export default function AllRequests() {
     const dispatch = useDispatch();
@@ -51,6 +52,11 @@ export default function AllRequests() {
     const isReqDetailsPopupShown = useSelector(getReqDetailsPopupState);
     const togglePopup = () => dispatch(setRequestDetailsPopup(isReqDetailsPopupShown));
 
+    const onRequestClicked = (request) => {
+        togglePopup();
+        dispatch(setCurrentRequestCard(request));
+    }
+
     const showPopup = () => {
         if (isReqDetailsPopupShown){
             document.body.style.overflow = 'hidden';
@@ -82,7 +88,7 @@ export default function AllRequests() {
                                     creationDate={request.creationDate}
                                     approve={request.approve}
                                     key={request.id}
-                                    onClick={togglePopup}
+                                    onClick={() => onRequestClicked(request)}
                                 />))
                             }
                             { isReqDetailsPopupShown ? <RequestDetails/> : null }
