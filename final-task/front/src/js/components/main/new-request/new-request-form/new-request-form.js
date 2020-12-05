@@ -13,7 +13,6 @@ export default function NewRequestForm(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(selectValue.current);
         props.onFormSubmitted(
             selectValue.current.state.value.label,
             startDateValue.current.input.defaultValue,
