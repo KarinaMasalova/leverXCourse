@@ -7,18 +7,28 @@ import FormButton from '../../new-request/new-request-form/form-button';
 import ApproversContainerTitle from './approvers-container-title';
 import Approver from './approver';
 import { fetchOneRequestCard } from '../../../../repository/repository';
+import setCurrentRequestCard from '../../../../store/actionCreators/setCurrentRequestCard';
+// import setRequestDetailsPopup from '../../../../store/actionCreators/setRequestDetailsPopup';
 
 export default function RequestDetailsPopup() {
     const dispatch = useDispatch();
 
-    const getCurrentRequestCardID = (state) => state.currentRequestCardReducer.currentCardID;
-    const currentCardId = useSelector(getCurrentRequestCardID);
+    const currentCardID = useSelector((state) => state.currentRequestCardIdReducer.currentCardID);
 
     useEffect(() => {
-        fetchOneRequestCard(currentCardId)
-            .then(data => dispatch(setCurrentRequestCard(data)))
+        fetchOneRequestCard(currentCardID)
+            .then(data => {
+                console.log(data);
+                dispatch(setCurrentRequestCard(data));
+            })
             .catch(err => console.log(err));
-    }, [currentCardId]);
+    }, [currentCardID]);
+
+    // const onCancelButtonClicked = (isShown) => {
+    //     dispatch(setRequestDetailsPopup(isShown));
+    // }
+
+    const currentCard = useSelector((state) => state.currentRequestCardReducer.currentCard);
 
     return createPortal(
         <>
@@ -29,18 +39,18 @@ export default function RequestDetailsPopup() {
                     <span className="ico copy-icon"></span>
                     </p>
                     <OneRequestCard
-                        className={(currentCardId.type === 'Vacation')
+                        className={(currentCard.type === 'Vacation')
                             ? 'request-card__icon request-card__icon_vacation'
-                            : (currentCardId.type === 'Sick leave')
+                            : (currentCard.type === 'Sick leave')
                                 ? 'request-card__icon request-card__icon_sick-leave'
                                 : 'request-card__icon request-card__icon_own-expense'}
-                        type={currentCardId.type}
-                        startDate={currentCardId.startDate}
-                        endDate={currentCardId.endDate}
-                        durationInDays={currentCardId.durationInDays}
-                        creationDate={currentCardId.creationDate}
-                        approve={currentCardId.approve}
-                        key={currentCardId.id}
+                        type={currentCard.type}
+                        startDate={currentCard.startDate}
+                        endDate={currentCard.endDate}
+                        durationInDays={currentCard.durationInDays}
+                        creationDate={currentCard.creationDate}
+                        approve={currentCard.approve}
+                        key={currentCard.id}
                     />
                     <div className="all-approvers">
                         <div className="approvers-container">
@@ -84,7 +94,11 @@ export default function RequestDetailsPopup() {
                         </div>
                     </div>
                     <div className="request-details__buttons">
-                        <FormButton text={'cancel request'} className={'button button_uncolored'} />
+                        <FormButton
+                            text={'cancel request'}
+                            className={'button button_uncolored'}
+                            // onClick={onCancelButtonClicked(true)}
+                        />
                         <FormButton text={'change'} className={'button button_uncolored'} />
                         <FormButton text={'submit'} className={'button button_colored'} />
                     </div>

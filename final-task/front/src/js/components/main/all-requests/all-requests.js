@@ -8,7 +8,7 @@ import { fetchAllRequestCards } from '../../../repository/repository';
 import setAllRequestCards from '../../../store/actionCreators/setAllRequestCards';
 import setAvailableDays from "../../../store/actionCreators/setAvailableDays";
 import setRequestDetailsPopup from "../../../store/actionCreators/setRequestDetailsPopup";
-import setCurrentRequestCard from '../../../store/actionCreators/setCurrentRequestCard';
+import setCurrentRequestCardID from '../../../store/actionCreators/setCurrentRequestCardID';
 
 export default function AllRequests() {
     const dispatch = useDispatch();
@@ -52,9 +52,9 @@ export default function AllRequests() {
     const isReqDetailsPopupShown = useSelector(getReqDetailsPopupState);
     const togglePopup = () => dispatch(setRequestDetailsPopup(isReqDetailsPopupShown));
 
-    const onRequestClicked = (request) => {
+    const onRequestClicked = (id) => {
         togglePopup();
-        dispatch(setCurrentRequestCard(request));
+        dispatch(setCurrentRequestCardID(id));
     }
 
     const showPopup = () => {
@@ -88,7 +88,7 @@ export default function AllRequests() {
                                     creationDate={request.creationDate}
                                     approve={request.approve}
                                     key={request.id}
-                                    onClick={() => onRequestClicked(request)}
+                                    onClick={() => onRequestClicked(request.id)}
                                 />))
                             }
                             { isReqDetailsPopupShown ? <RequestDetails/> : null }
