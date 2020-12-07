@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { createPortal } from 'react-dom';
+import { useParams } from 'react-router-dom';
 
 import OneRequestCard from '../../all-requests/one-request-card';
 import FormButton from '../../new-request/new-request-form/form-button';
@@ -8,25 +9,19 @@ import ApproversContainerTitle from './approvers-container-title';
 import Approver from './approver';
 import { fetchOneRequestCard } from '../../../../repository/repository';
 import setCurrentRequestCard from '../../../../store/actionCreators/setCurrentRequestCard';
-// import setRequestDetailsPopup from '../../../../store/actionCreators/setRequestDetailsPopup';
 
 export default function RequestDetailsPopup() {
-    const dispatch = useDispatch();
-
-    const currentCardID = useSelector((state) => state.currentRequestCardIdReducer.currentCardID);
+    const dispatch = useDispatch(); 
+    const { id } = useParams();
 
     useEffect(() => {
-        fetchOneRequestCard(currentCardID)
+        fetchOneRequestCard(id)
             .then(data => {
                 console.log(data);
                 dispatch(setCurrentRequestCard(data));
             })
             .catch(err => console.log(err));
-    }, [currentCardID]);
-
-    // const onCancelButtonClicked = (isShown) => {
-    //     dispatch(setRequestDetailsPopup(isShown));
-    // }
+    }, [id]);
 
     const currentCard = useSelector((state) => state.currentRequestCardReducer.currentCard);
 
@@ -44,12 +39,7 @@ export default function RequestDetailsPopup() {
                             : (currentCard.type === 'Sick leave')
                                 ? 'request-card__icon request-card__icon_sick-leave'
                                 : 'request-card__icon request-card__icon_own-expense'}
-                        type={currentCard.type}
-                        startDate={currentCard.startDate}
-                        endDate={currentCard.endDate}
-                        durationInDays={currentCard.durationInDays}
-                        creationDate={currentCard.creationDate}
-                        approve={currentCard.approve}
+                        cardInfo={currentCard}
                         key={currentCard.id}
                     />
                     <div className="all-approvers">
@@ -97,7 +87,6 @@ export default function RequestDetailsPopup() {
                         <FormButton
                             text={'cancel request'}
                             className={'button button_uncolored'}
-                            // onClick={onCancelButtonClicked(true)}
                         />
                         <FormButton text={'change'} className={'button button_uncolored'} />
                         <FormButton text={'submit'} className={'button button_colored'} />
@@ -105,6 +94,6 @@ export default function RequestDetailsPopup() {
                 </div>
             </div>
         </>,
-        document.getElementById("portalDetailsPopup")
+        document.getElementById("portal")
     );
 }

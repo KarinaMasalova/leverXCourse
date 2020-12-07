@@ -1,14 +1,15 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Route, Switch } from "react-router-dom";
 
 import OneRequestCard from './one-request-card';
 import YearIdentifier from './year-identifier';
 import RequestDetails from '../pop-up/request-details/request-details';
+import ChangeRequestPopup from "../pop-up/change-request/change-request";
+import ConfirmationPopup from "../pop-up/confirmation/confirmation";
 import { fetchAllRequestCards } from '../../../repository/repository';
 import setAllRequestCards from '../../../store/actionCreators/setAllRequestCards';
 import setAvailableDays from "../../../store/actionCreators/setAvailableDays";
-import setRequestDetailsPopup from "../../../store/actionCreators/setRequestDetailsPopup";
-import setCurrentRequestCardID from '../../../store/actionCreators/setCurrentRequestCardID';
 
 export default function AllRequests() {
     const dispatch = useDispatch();
@@ -47,23 +48,6 @@ export default function AllRequests() {
     const getAllRequestCards = (state) => state.allRequestCardsReducer.allRequests;
     const allRequests = useSelector(getAllRequestCards);
     const groupedAllRequests = groupBy('year', allRequests);
-    
-    const getReqDetailsPopupState = (state) => state.requestDetailsPopupReducer.isRequestDetailsPopupShown;
-    const isReqDetailsPopupShown = useSelector(getReqDetailsPopupState);
-    const togglePopup = () => dispatch(setRequestDetailsPopup(isReqDetailsPopupShown));
-
-    const onRequestClicked = (id) => {
-        togglePopup();
-        dispatch(setCurrentRequestCardID(id));
-    }
-
-    const showPopup = () => {
-        if (isReqDetailsPopupShown){
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'scroll';
-        }
-    }
 
     return (
         <div className="all-requests-container">
@@ -81,18 +65,15 @@ export default function AllRequests() {
                                             ? 'request-card__icon request-card__icon_sick-leave'
                                             : 'request-card__icon request-card__icon_own-expense'
                                     }
-                                    type={request.type}
-                                    startDate={request.startDate}
-                                    endDate={request.endDate}
-                                    durationInDays={request.durationInDays}
-                                    creationDate={request.creationDate}
-                                    approve={request.approve}
+                                    cardInfo={request}
                                     key={request.id}
-                                    onClick={() => onRequestClicked(request.id)}
                                 />))
                             }
-                            { isReqDetailsPopupShown ? <RequestDetails/> : null }
-                            { showPopup() }
+                            <Switch>
+                                <Route path="/details/:id" render={() => <RequestDetails/> }/>
+                                <Route path="/change" render={() => <ChangeRequestPopup/> }/>
+                                <Route path="/confirm" render={() => <ConfirmationPopup/> }/>
+                            </Switch>
                         </Fragment>
                     )
                 })}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 
 import OneRequestCard from '../../all-requests/one-request-card';
 import FormSelect from '../../new-request/new-request-form/form-select';
@@ -7,19 +8,23 @@ import FormButton from '../../new-request/new-request-form/form-button';
 import PeriodInfo from '../../new-request/new-request-form/period-info';
 
 export default function ChangeRequestPopup() {
-    return (
-        <div className="change-request-info">
-            <p className="change-request__title">Change request</p>
-            <OneRequestCard/>
-            <form className="change-request">
-                <FormSelect/>
-                <PeriodInfo/>
-                <FormTextarea/>
-            </form>
-            <div className="change-request__buttons">
-                <FormButton text={'cancel'} className={'button button_uncolored'}/>
-                <FormButton text={'submit'} className={'button button_colored'}/>
+    return createPortal(
+        <>
+            <div className="overlay"></div>
+            <div className="change-request-info">
+                <p className="change-request__title">Change request</p>
+                <OneRequestCard/>
+                <form className="change-request">
+                    <FormSelect/>
+                    <PeriodInfo/>
+                    <FormTextarea/>
+                </form>
+                <div className="change-request__buttons">
+                    <FormButton text={'cancel'} className={'button button_uncolored'}/>
+                    <FormButton text={'submit'} className={'button button_colored'}/>
+                </div>
             </div>
-        </div>
+        </>,
+        document.getElementById("portal")
     );
 }
