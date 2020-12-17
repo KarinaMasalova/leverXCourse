@@ -70,9 +70,11 @@ export default function AllRequests() {
                                 />))
                             }
                             <Switch>
-                                <Route path="/details/:id" render={() => <RequestDetails/> }/>
-                                <Route path="/change" render={() => <ChangeRequestPopup/> }/>
+                                <Route path="/details/:id/change" render={() => <ChangeRequestPopup/> }/>
+                                <Route path="/details/:id" render={() => <RequestDetails isOpened/> }/>
                                 <Route path="/confirm" render={() => <ConfirmationPopup/> }/>
+                                <Route path="/cancel" render={() => <ConfirmationPopup/> }/>
+                                <Route path="/success" render={() => <ConfirmationPopup/> }/>
                             </Switch>
                         </Fragment>
                     )

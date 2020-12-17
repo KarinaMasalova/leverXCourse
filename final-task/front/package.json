@@ -12,6 +12,7 @@
   "author": "Karina Masalova",
   "license": "ISC",
   "dependencies": {
+    "@rooks/use-outside-click": "^4.4.0",
     "react": "^16.13.1",
     "react-datepicker": "^3.3.0",
     "react-dom": "^16.13.1",

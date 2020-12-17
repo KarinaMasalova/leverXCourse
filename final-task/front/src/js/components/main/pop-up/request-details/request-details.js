@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { createPortal } from 'react-dom';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import useOutsideClick from "@rooks/use-outside-click";
 
 import OneRequestCard from '../../all-requests/one-request-card';
 import FormButton from '../../new-request/new-request-form/form-button';
@@ -10,25 +11,30 @@ import Approver from './approver';
 import { fetchOneRequestCard } from '../../../../repository/repository';
 import setCurrentRequestCard from '../../../../store/actionCreators/setCurrentRequestCard';
 
-export default function RequestDetailsPopup() {
-    const dispatch = useDispatch(); 
+export default function RequestDetailsPopup(props) {
+    const dispatch = useDispatch();
     const { id } = useParams();
+    const modalRef = useRef();
+    const history = useHistory();
 
     useEffect(() => {
         fetchOneRequestCard(id)
-            .then(data => {
-                console.log(data);
-                dispatch(setCurrentRequestCard(data));
-            })
+            .then(data => dispatch(setCurrentRequestCard(data)))
             .catch(err => console.log(err));
     }, [id]);
+
+    function closeModal() {
+        history.replace("/");
+    }
+
+    useOutsideClick(modalRef, closeModal);
 
     const currentCard = useSelector((state) => state.currentRequestCardReducer.currentCard);
 
     return createPortal(
         <>
             <div className="overlay"></div>
-            <div className="popup-container">
+            <div className="popup-container" ref={modalRef}>
                 <div className="request-details-info">
                     <p className="request-details__title">Request for vacation
                     <span className="ico copy-icon"></span>
@@ -85,11 +91,19 @@ export default function RequestDetailsPopup() {
                     </div>
                     <div className="request-details__buttons">
                         <FormButton
+                            linkTo="/"
                             text={'cancel request'}
                             className={'button button_uncolored'}
                         />
-                        <FormButton text={'change'} className={'button button_uncolored'} />
-                        <FormButton text={'submit'} className={'button button_colored'} />
+                        <FormButton
+                            linkTo={`details/${id}/change`}
+                            text={'change'}
+                            className={'button button_uncolored'}
+                        />
+                        <FormButton
+                            text={'submit'}
+                            className={'button button_colored'}
+                        />
                     </div>
                 </div>
             </div>
